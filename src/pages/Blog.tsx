@@ -33,24 +33,24 @@ export default function Blog() {
         <Reveal>
           <Link
             to={`/blog/${featured.slug}`}
-            className="group grid overflow-hidden rounded-[2rem] border border-teal-100 bg-white shadow-soft md:grid-cols-2"
+            className="group grid gap-6 overflow-hidden rounded-[2rem] bg-purple p-5 shadow-card md:grid-cols-2"
           >
-            <div className="overflow-hidden">
+            <div className="overflow-hidden rounded-2xl">
               <img
                 src={featured.image}
                 alt={featured.title}
                 className="h-full min-h-[260px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
             </div>
-            <div className="flex flex-col justify-center p-8 md:p-12">
-              <p className="text-xs font-semibold uppercase tracking-wider text-teal">
-                Featured · {featured.date}
+            <div className="flex flex-col justify-center md:py-6 md:pr-6">
+              <p className="text-xs font-semibold uppercase tracking-wider text-green">
+                Featured
               </p>
-              <h2 className="mt-3 font-display text-4xl leading-tight text-ink">
+              <h2 className="mt-3 font-display text-4xl leading-tight text-green">
                 {featured.title}
               </h2>
-              <p className="mt-4 text-body">{featured.excerpt}</p>
-              <span className="mt-6 inline-flex items-center gap-2 font-semibold text-teal group-hover:gap-3">
+              <p className="mt-4 text-white/85">{featured.excerpt}</p>
+              <span className="mt-6 inline-flex items-center gap-2 font-semibold uppercase tracking-wider text-green group-hover:gap-3">
                 Read more <Arrow className="h-4 w-4" />
               </span>
             </div>
@@ -63,26 +63,24 @@ export default function Blog() {
             <Reveal key={post.slug} delay={i * 0.1}>
               <Link
                 to={`/blog/${post.slug}`}
-                className="group block h-full overflow-hidden rounded-3xl border border-teal-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-card"
+                className="group flex h-full flex-col rounded-3xl bg-purple p-5 shadow-card transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="overflow-hidden">
+                <div className="overflow-hidden rounded-2xl">
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="p-6">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-teal">
-                    {post.date}
-                  </p>
-                  <h3 className="mt-2 font-display text-2xl leading-tight text-ink">
-                    {post.title}
-                  </h3>
-                  <p className="mt-3 line-clamp-3 text-sm text-body">
-                    {post.excerpt}
-                  </p>
-                </div>
+                <h3 className="mt-5 font-display text-2xl leading-tight text-green">
+                  {post.title}
+                </h3>
+                <p className="mt-3 line-clamp-4 flex-1 text-sm text-white/85">
+                  {post.excerpt}
+                </p>
+                <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-green group-hover:gap-3">
+                  Read More <Arrow className="h-4 w-4" />
+                </span>
               </Link>
             </Reveal>
           ))}

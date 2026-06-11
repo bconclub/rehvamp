@@ -271,29 +271,24 @@ export default function Home() {
               <Reveal key={post.slug} delay={i * 0.1}>
                 <Link
                   to={`/blog/${post.slug}`}
-                  className="group block h-full overflow-hidden rounded-3xl border border-purple-100 bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-card"
+                  className="group flex h-full flex-col rounded-3xl bg-purple p-5 shadow-card transition-all duration-300 hover:-translate-y-1"
                 >
-                  <div className="overflow-hidden">
+                  <div className="overflow-hidden rounded-2xl">
                     <img
                       src={post.image}
                       alt={post.title}
-                      className="h-52 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
-                  <div className="p-6">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-purple">
-                      {post.date}
-                    </p>
-                    <h3 className="mt-2 font-display text-2xl leading-tight text-ink">
-                      {post.title}
-                    </h3>
-                    <p className="mt-3 line-clamp-3 text-sm text-body">
-                      {post.excerpt}
-                    </p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-purple group-hover:gap-3">
-                      Read More <Arrow className="h-4 w-4" />
-                    </span>
-                  </div>
+                  <h3 className="mt-5 font-display text-2xl leading-tight text-green">
+                    {post.title}
+                  </h3>
+                  <p className="mt-3 line-clamp-4 flex-1 text-sm text-white/85">
+                    {post.excerpt}
+                  </p>
+                  <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-green group-hover:gap-3">
+                    Read More <Arrow className="h-4 w-4" />
+                  </span>
                 </Link>
               </Reveal>
             ))}
@@ -301,34 +296,33 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 9 - TESTIMONIALS */}
-      <section className="container-x py-16 md:py-24">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow justify-center">Real people, real change</p>
-          <h2 className="mt-3 display-lg text-purple">Stories of hope</h2>
-        </Reveal>
-        <div className="mt-12 grid gap-6 md:grid-cols-3">
-          {stories.map((t, i) => (
-            <Reveal key={t.id} delay={i * 0.1}>
-              <figure className="flex h-full flex-col rounded-3xl border border-purple-100 bg-white p-8 shadow-soft">
-                <span className="font-display text-5xl leading-none text-green">
-                  &ldquo;
-                </span>
-                <blockquote className="mt-2 flex-1 text-body">{t.quote}</blockquote>
-                <figcaption className="mt-6 flex items-center gap-3">
-                  <img
-                    src={t.image}
-                    alt=""
-                    className="h-11 w-11 rounded-full object-cover"
-                  />
-                  <span>
-                    <span className="block font-semibold text-ink">{t.name}</span>
-                    <span className="block text-xs text-body">{t.role}</span>
+      {/* 9 - TESTIMONIALS (Real People, Real Change) */}
+      <section className="bg-green-100 py-16 md:py-24">
+        <div className="container-x">
+          <Reveal>
+            <h2 className="display-lg text-ink">Real People, Real Change</h2>
+          </Reveal>
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+            {stories.map((t, i) => (
+              <Reveal key={t.id} delay={i * 0.1}>
+                <div className="group flex h-full flex-col rounded-3xl bg-purple p-5 shadow-card transition-all duration-300 hover:-translate-y-1">
+                  <div className="overflow-hidden rounded-2xl">
+                    <img
+                      src={t.image}
+                      alt={t.title}
+                      className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <h3 className="mt-5 font-display text-3xl leading-tight text-green">
+                    {t.title}
+                  </h3>
+                  <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-white">
+                    <Arrow className="h-4 w-4" /> Read Story
                   </span>
-                </figcaption>
-              </figure>
-            </Reveal>
-          ))}
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
