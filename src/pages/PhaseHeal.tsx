@@ -2,42 +2,42 @@ import { useState, type ReactNode } from "react";
 import PageTransition from "../components/PageTransition";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
-import { Arrow, Check, Shield, Brain, Refresh, Moon } from "../components/Icons";
+import { Arrow, Check, Shield } from "../components/Icons";
 
-const BENEFITS = [
-  { label: "Reduce mental overload", icon: Brain },
-  { label: "Break automatic habits", icon: Refresh },
-  { label: "Restore peace of mind", icon: Moon },
+const HELPS_YOU = [
+  "Break unhealthy digital habits",
+  "Reduce mental overload",
+  "Reclaim focus, sleep and peace of mind",
+];
+
+const WHAT_YOU_DO = [
+  "Create phone-free zones",
+  "Reduce night-time screen use",
+  "Track screen time",
+  "Pause before scrolling",
+  "Build mindful digital routines",
 ];
 
 const STEPS = [
-  { n: "01", title: "Join", blurb: "Sign up via the form below to register." },
+  { n: "01", title: "Join", blurb: "Register through the submission form below." },
   { n: "02", title: "Track", blurb: "Log your daily habits and screen time." },
   { n: "03", title: "Upload", blurb: "Share screenshots as supporting evidence." },
   { n: "04", title: "Reflect", blurb: "Reflect honestly on your progress." },
 ];
 
 const HEAL_PRACTICES = [
-  "Created phone-free zones",
-  "Reduced night-time screen use",
-  "Tracked my screen time daily",
-  "Built a mindful morning/evening routine",
-  "Turned off non-essential notifications",
-  "Replaced scrolling with movement",
+  "Phone-free zones",
+  "No phone before bed",
+  "Notifications turned off",
+  "Charging phone outside the bedroom",
 ];
 
-const SCREEN_TIMES = [
-  "Under 2 hours",
-  "2-4 hours",
-  "4-6 hours",
-  "6-8 hours",
-  "Over 8 hours",
-];
+const SCREEN_TIMES = ["Under 2 hours", "2-4 hours", "4-6 hours", "6-8 hours", "Over 8 hours"];
 
 const RULES = [
   "You must be 18 years or older to participate.",
   "Evidence (screenshots) must be authentic and your own.",
-  "Progress is personal, effort matters more than numbers.",
+  "Progress is personal. Effort matters more than numbers.",
   "Be respectful in all community spaces.",
   "Your data is used only to run the challenge and is never sold.",
 ];
@@ -49,47 +49,59 @@ export default function PhaseHeal() {
     <PageTransition>
       <PageHero
         eyebrow="Digital Well-Being Challenge"
-        title="Phase 1: Heal"
-        subtitle="This isn't about quitting social media. It's about using technology intentionally, breaking habits, and reclaiming your focus."
+        title="Phase I: Heal"
+        subtitle="This isn't about quitting social media. It's about using technology intentionally, breaking habits and reclaiming your focus."
         tone="teal"
       />
 
-      {/* Benefits */}
-      <section className="container-x py-16 md:py-20">
+      {/* Welcome */}
+      <section className="container-x py-16 md:py-24">
         <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow justify-center">Why heal first</p>
-          <h2 className="mt-3 display-md">Reclaim your peace of mind</h2>
-          <p className="mt-4 text-body">
-            Progress is personal. Effort matters more than numbers.
-          </p>
+          <p className="eyebrow justify-center">Phase I</p>
+          <h2 className="mt-3 display-md">Welcome to Phase I: HEAL</h2>
+          <p className="mt-4 text-lg text-body">Break habits. Reclaim focus. Find peace.</p>
         </Reveal>
-        <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          {BENEFITS.map((b, i) => (
-            <Reveal key={b.label} delay={i * 0.08}>
-              <div className="flex items-center gap-3 rounded-2xl border border-purple-100 bg-white p-5">
-                <b.icon className="h-6 w-6 shrink-0 text-green" />
-                <span className="font-medium text-ink">{b.label}</span>
-              </div>
-            </Reveal>
-          ))}
+        <div className="mt-12 grid gap-6 md:grid-cols-2">
+          <Reveal>
+            <div className="h-full rounded-3xl bg-purple-50 p-8">
+              <h3 className="font-display text-2xl text-purple">This phase helps you:</h3>
+              <ul className="mt-4 space-y-3">
+                {HELPS_YOU.map((t) => (
+                  <li key={t} className="flex gap-3 text-body">
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-green" /> {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal delay={0.1}>
+            <div className="h-full rounded-3xl bg-green-100 p-8">
+              <h3 className="font-display text-2xl text-purple">What You'll Do:</h3>
+              <ul className="mt-4 space-y-3">
+                {WHAT_YOU_DO.map((t) => (
+                  <li key={t} className="flex gap-3 text-body">
+                    <Check className="mt-1 h-4 w-4 shrink-0 text-purple" /> {t}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
         </div>
       </section>
 
-      {/* Steps */}
-      <section className="bg-purple-50 py-16 md:py-20">
+      {/* How the HEAL Phase Works */}
+      <section className="bg-purple-50 py-16 md:py-24">
         <div className="container-x">
           <Reveal className="mx-auto max-w-2xl text-center">
-            <p className="eyebrow justify-center">How it works</p>
-            <h2 className="mt-3 display-md">Four simple steps</h2>
+            <p className="eyebrow justify-center">The process</p>
+            <h2 className="mt-3 display-md">How the HEAL Phase Works</h2>
           </Reveal>
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {STEPS.map((s, i) => (
               <Reveal key={s.n} delay={i * 0.08}>
                 <div className="h-full rounded-3xl bg-white p-7 shadow-soft">
                   <span className="font-display text-5xl text-green">{s.n}</span>
-                  <h3 className="mt-3 font-display text-2xl text-ink">
-                    {s.title}
-                  </h3>
+                  <h3 className="mt-3 font-display text-2xl text-ink">{s.title}</h3>
                   <p className="mt-2 text-sm text-body">{s.blurb}</p>
                 </div>
               </Reveal>
@@ -98,25 +110,19 @@ export default function PhaseHeal() {
         </div>
       </section>
 
-      {/* Sign-up form */}
-      <section className="container-x py-16 md:py-20">
+      {/* Submission form */}
+      <section className="container-x py-16 md:py-24">
         <Reveal className="mx-auto max-w-3xl">
           <div className="rounded-[2rem] border border-purple-100 bg-white p-6 shadow-soft sm:p-8 md:p-10">
-            <p className="eyebrow">Join Phase 1</p>
-            <h2 className="mt-2 display-md">Register your commitment</h2>
-            <p className="mt-3 text-body">
-              Takes about 5 minutes. Your honest answers help us support you
-              through the Heal phase.
-            </p>
+            <p className="eyebrow">REHVAMP Reset</p>
+            <h2 className="mt-2 display-md">Phase I: HEAL Submission Form</h2>
 
             {sent ? (
               <div className="mt-8 rounded-2xl bg-green-100 p-8 text-center">
-                <h3 className="font-display text-3xl text-green-600">
-                  You're in! 🌿
-                </h3>
+                <h3 className="font-display text-3xl text-green-600">You're in! 🌿</h3>
                 <p className="mt-2 text-body">
-                  Welcome to the Heal phase. Check your inbox for next steps and
-                  your tracking sheet.
+                  Welcome to the HEAL phase. Check your inbox for next steps and your
+                  tracking sheet.
                 </p>
               </div>
             ) : (
@@ -128,36 +134,33 @@ export default function PhaseHeal() {
                 }}
                 className="mt-8 space-y-10"
               >
-                {/* About you */}
-                <FormSection n="1" title="About you">
+                <FormSection n="1" title="Participant Information">
                   <div className="grid gap-5 sm:grid-cols-2">
-                    <Field label="Full name" required>
+                    <Field label="Full Name" required>
                       <input required className="input" placeholder="Your name" />
                     </Field>
-                    <Field label="Email" required>
+                    <Field label="Email Address" required>
                       <input required type="email" className="input" placeholder="you@email.com" />
                     </Field>
-                    <Field label="Age" required>
-                      <input required type="number" min={18} className="input" placeholder="18+" />
+                    <Field label="Age Range (Optional)">
+                      <input className="input" placeholder="e.g. 25-34" />
                     </Field>
-                    <Field label="Country / location">
-                      <input className="input" placeholder="e.g. United Kingdom" />
+                    <Field label="City / Location (Optional)">
+                      <input className="input" placeholder="e.g. London, UK" />
                     </Field>
                   </div>
                 </FormSection>
 
-                {/* Focus */}
-                <FormSection n="2" title="Your focus">
-                  <Field label="Main digital-habit focus" required>
+                <FormSection n="2" title="Intention & Motivation">
+                  <Field label="What's your main digital-habit focus?" required>
                     <input required className="input" placeholder="e.g. less night-time scrolling" />
                   </Field>
-                  <Field label="What's your motivation for joining?">
-                    <textarea rows={3} className="input resize-none" placeholder="Why are you joining the Heal phase?" />
+                  <Field label="Why are you joining the HEAL phase?">
+                    <textarea rows={3} className="input resize-none" placeholder="Your motivation" />
                   </Field>
                 </FormSection>
 
-                {/* Baseline */}
-                <FormSection n="3" title="Your baseline">
+                <FormSection n="3" title="Baseline Digital Record">
                   <div className="grid gap-5 sm:grid-cols-2">
                     <Field label="Average daily screen time (before)" required>
                       <select required className="input" defaultValue="">
@@ -165,14 +168,16 @@ export default function PhaseHeal() {
                         {SCREEN_TIMES.map((t) => <option key={t}>{t}</option>)}
                       </select>
                     </Field>
-                    <Field label="Baseline screenshot (Screen Time / Digital Wellbeing)">
-                      <input type="file" accept="image/*" className="file-input" />
+                    <Field label="Upload a screenshot of your baseline screen time" required>
+                      <input required type="file" accept="image/*" className="file-input" />
                     </Field>
                   </div>
                 </FormSection>
 
-                {/* HEAL practices */}
-                <FormSection n="4" title="HEAL practices you've adopted">
+                <FormSection n="4" title="HEAL Actions Taken">
+                  <p className="text-sm font-semibold text-ink">
+                    Which HEAL practices did you actively use?
+                  </p>
                   <div className="grid gap-3 sm:grid-cols-2">
                     {HEAL_PRACTICES.map((p) => (
                       <label key={p} className="flex items-start gap-3 rounded-xl border border-purple-100 p-3 text-sm text-body">
@@ -181,19 +186,17 @@ export default function PhaseHeal() {
                       </label>
                     ))}
                   </div>
-                  <Field label="How consistent have you been?">
+                  <Field label="How consistent were you?">
                     <select className="input" defaultValue="">
                       <option value="" disabled>Select…</option>
-                      <option>Every day</option>
+                      <option>Daily</option>
                       <option>Most days</option>
-                      <option>Some days</option>
-                      <option>A few times</option>
+                      <option>Occasionally</option>
                     </select>
                   </Field>
                 </FormSection>
 
-                {/* Progress */}
-                <FormSection n="5" title="Your progress">
+                <FormSection n="5" title="Progress Tracking & Evidence">
                   <div className="grid gap-5 sm:grid-cols-2">
                     <Field label="Current daily screen time (now)">
                       <select className="input" defaultValue="">
@@ -201,18 +204,23 @@ export default function PhaseHeal() {
                         {SCREEN_TIMES.map((t) => <option key={t}>{t}</option>)}
                       </select>
                     </Field>
-                    <Field label="Progress screenshot (optional)">
+                    <Field label="Upload a progress screenshot">
                       <input type="file" accept="image/*" className="file-input" />
                     </Field>
                   </div>
+                </FormSection>
+
+                <FormSection n="6" title="Reflection & Self-Control">
                   <Field label="What was hardest, and what helped?">
                     <textarea rows={3} className="input resize-none" placeholder="Reflect honestly on your struggles and strategies." />
                   </Field>
                 </FormSection>
 
-                {/* Consent */}
-                <FormSection n="6" title="Commitment & consent">
-                  <div className="space-y-3">
+                <FormSection n="7" title="Optional Supporting Evidence">
+                  <Field label="Any other evidence you'd like to share (optional)">
+                    <input type="file" accept="image/*" className="file-input" />
+                  </Field>
+                  <div className="space-y-3 pt-2">
                     {[
                       "I'm 18 years or older.",
                       "The evidence I provide is authentic and my own.",
@@ -235,12 +243,12 @@ export default function PhaseHeal() {
         </Reveal>
       </section>
 
-      {/* Rules & consent */}
-      <section className="bg-purple-50 py-16 md:py-20">
+      {/* Participant Rules */}
+      <section className="bg-purple-50 py-16 md:py-24">
         <div className="container-x mx-auto max-w-3xl">
           <Reveal>
             <p className="eyebrow">
-              <Shield className="h-4 w-4" /> Participant rules & consent
+              <Shield className="h-4 w-4" /> Participant Rules
             </p>
             <h2 className="mt-3 display-md">The fine print, kept simple</h2>
             <ul className="mt-6 space-y-3">
@@ -272,15 +280,7 @@ function FormSection({ n, title, children }: { n: string; title: string; childre
   );
 }
 
-function Field({
-  label,
-  required,
-  children,
-}: {
-  label: string;
-  required?: boolean;
-  children: ReactNode;
-}) {
+function Field({ label, required, children }: { label: string; required?: boolean; children: ReactNode }) {
   return (
     <label className="block">
       <span className="mb-1.5 block text-sm font-semibold text-ink">

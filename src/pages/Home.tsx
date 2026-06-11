@@ -64,7 +64,7 @@ export default function Home() {
         <div className="container-x grid items-stretch gap-6 md:grid-cols-3">
           <Reveal className="h-full">
             <img
-              src={IMG.home.heroChildren}
+              src={IMG.home.trioLeft}
               alt="Children supported by REHVAMP"
               className="h-full min-h-[280px] w-full rounded-3xl object-cover shadow-soft"
             />
@@ -110,7 +110,7 @@ export default function Home() {
 
           <Reveal delay={0.2} className="h-full">
             <img
-              src={IMG.home.event3}
+              src={IMG.home.trioRight}
               alt="A group of children"
               className="h-full min-h-[280px] w-full rounded-3xl object-cover shadow-soft"
             />

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-11 · Phase 1, Legal, and home-trio one-to-one match
+
+- Home 2nd-section trio: pulled the live's exact side photos (trio-left / trio-right) and swapped them in.
+- Phase 1: Heal rebuilt to match the live page — "Welcome to Phase I: HEAL", "This phase helps you" / "What You'll Do", and the submission form's real sections (Participant Information, Intention & Motivation, Baseline Digital Record, HEAL Actions Taken, Progress Tracking & Evidence, Reflection & Self-Control, Optional Supporting Evidence) + Participant Rules. HEAL practices match the live checklist.
+- Privacy Policy & Terms rebuilt with the full real legal text from the live site (10–11 sections each, subsections + lists), brand-styled.
+- User-facing: Phase 1, Privacy, Terms and the home trio now mirror the live site content.
+
 ## 2026-06-11 · Get Involved imagery + Be-the-Change card height
 
 - Get Involved "Why Get Involved?" cards: swapped the placeholder headshots for real children/charity photos (HEAL, GROW, INSPIRE).

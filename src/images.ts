@@ -9,6 +9,8 @@ export const IMG = {
   },
   home: {
     hero: "/images/home/hero.webp", // the real WordPress hero (child with painted hands)
+    trioLeft: "/images/home/trio-left.webp", // live home 2nd-section left photo
+    trioRight: "/images/home/trio-right.webp", // live home 2nd-section right photo
     heroChildren: "/images/home/people-1.webp", // children learning with a mentor
     childBoard: "/images/home/child-board.webp", // child holding a board (cutout)
     classroom: "/images/home/event-1.webp", // teacher + circle of kids
