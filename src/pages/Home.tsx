@@ -182,7 +182,7 @@ export default function Home() {
                   <img
                     src={c.image}
                     alt=""
-                    className="mt-auto h-auto w-full object-cover"
+                    className="mt-auto h-[300px] w-full object-cover"
                   />
                 </div>
               </Reveal>

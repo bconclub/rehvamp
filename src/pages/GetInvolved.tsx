@@ -10,17 +10,17 @@ const WHY = [
   {
     title: "Heal",
     blurb: "Provide hope and restoration to children recovering from hardship.",
-    image: IMG.home.circle1,
+    image: IMG.home.heroChildren,
   },
   {
     title: "Grow",
     blurb: "Create opportunities for learning, connection and confidence.",
-    image: IMG.home.circle2,
+    image: IMG.home.classroom,
   },
   {
     title: "Inspire",
     blurb: "Motivate young people, and each other, toward positive change.",
-    image: IMG.home.circle3,
+    image: IMG.home.event3,
   },
 ];
 
