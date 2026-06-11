@@ -17,14 +17,14 @@ const BE_THE_CHANGE = [
   {
     title: "Volunteer",
     blurb: "Offer your time, skills or mentorship to support young lives.",
-    image: IMG.home.people2,
+    image: IMG.home.event2,
     tone: "green" as const,
   },
   {
     title: "Fundraise",
     blurb:
       "Collaborate with us to expand access to care, education and opportunity.",
-    image: IMG.home.people3,
+    image: IMG.home.event3,
     tone: "purple" as const,
   },
 ];
@@ -182,7 +182,7 @@ export default function Home() {
                   <img
                     src={c.image}
                     alt=""
-                    className="mt-auto h-44 w-full object-cover"
+                    className="mt-auto h-auto w-full object-cover"
                   />
                 </div>
               </Reveal>
