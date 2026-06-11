@@ -1,0 +1,49 @@
+// Central image manifest, every section references a SPECIFIC real image
+// (downloaded from the live site into /public/images/<section>/). No random images.
+
+export const IMG = {
+  logo: {
+    white: "/assets/logo-white.webp",
+    dark: "/assets/logo-dark.png",
+    icon: "/assets/icon.webp",
+  },
+  home: {
+    hero: "/images/home/hero.webp", // the real WordPress hero (child with painted hands)
+    heroChildren: "/images/home/people-1.webp", // children learning with a mentor
+    childBoard: "/images/home/child-board.webp", // child holding a board (cutout)
+    classroom: "/images/home/event-1.webp", // teacher + circle of kids
+    people2: "/images/home/people-2.webp",
+    people3: "/images/home/people-3.webp",
+    event2: "/images/home/event-2.webp",
+    event3: "/images/home/event-3.webp",
+    circle1: "/images/home/circle-1.jpg",
+    circle2: "/images/home/circle-2.jpg",
+    circle3: "/images/home/circle-3.jpg",
+  },
+  founder: {
+    portrait: "/images/founder/ishita.jpg", // Ishita Reha Gupta
+    festival: "/images/founder/ishita-festival.jpg",
+    certificate: "/images/founder/ishita-certificate.jpg",
+  },
+  about: {
+    a1: "/images/about/about-1.jpg",
+    a2: "/images/about/about-2.jpg",
+  },
+  blog: {
+    featured: "/images/blog/featured.webp",
+    event: "/images/blog/event.jpg",
+  },
+  gaza: {
+    g1: "/images/gaza/gaza-1.jpg",
+    g2: "/images/gaza/gaza-2.webp",
+    g3: "/images/gaza/gaza-3.jpg",
+    g4: "/images/gaza/gaza-4.jpg",
+  },
+  challenge: {
+    thirdSpace: "/images/challenge/third-space.png",
+    aire: "/images/challenge/aire.png",
+    book: "/images/challenge/book-reward.jpg",
+    gym: "/images/challenge/third-space-gym.webp",
+    bath: "/images/challenge/aire-bath.jpg",
+  },
+};

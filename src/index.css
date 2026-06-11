@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Lenis smooth scroll */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  body {
+    @apply bg-cream font-sans text-body antialiased;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-normal text-ink;
+    letter-spacing: 0.01em;
+    line-height: 0.92;
+  }
+
+  ::selection {
+    @apply bg-purple text-white;
+  }
+
+  /* Brand-coloured scrollbar */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #5e2b97 #efe1ff;
+  }
+  ::-webkit-scrollbar {
+    width: 12px;
+    height: 12px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #efe1ff;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #5e2b97;
+    border: 3px solid #efe1ff;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4a1f7a;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-container px-5 sm:px-8;
+  }
+
+  /* Primary pill button, matches the site's rounded CTA style */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-7 py-3.5
+      text-sm font-semibold tracking-wide transition-all duration-300
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-teal/50;
+  }
+
+  /* Primary action = GREEN pill (matches the live "Donate NOW" button) */
+  .btn-primary {
+    @apply btn bg-green text-white shadow-card hover:bg-green-600 hover:-translate-y-0.5;
+  }
+
+  .btn-green {
+    @apply btn bg-green text-white shadow-card hover:bg-green-600 hover:-translate-y-0.5;
+  }
+
+  /* Secondary action = PURPLE pill */
+  .btn-purple {
+    @apply btn bg-purple text-white shadow-card hover:bg-purple-600 hover:-translate-y-0.5;
+  }
+
+  .btn-outline {
+    @apply btn border-2 border-purple text-purple hover:bg-purple hover:text-white;
+  }
+
+  .btn-ghost-white {
+    @apply btn border-2 border-white/70 text-white hover:bg-white hover:text-ink;
+  }
+
+  .input {
+    @apply w-full rounded-xl border border-teal-100 bg-cream px-4 py-3 text-ink
+      outline-none transition-all placeholder:text-body/50
+      focus:border-teal focus:bg-white focus:ring-2 focus:ring-teal/20;
+  }
+
+  .file-input {
+    @apply w-full cursor-pointer rounded-xl border border-purple-100 bg-cream px-4 py-2.5 text-sm text-body
+      file:mr-3 file:cursor-pointer file:rounded-full file:border-0 file:bg-purple file:px-4 file:py-2
+      file:text-xs file:font-semibold file:text-white hover:file:bg-purple-600;
+  }
+
+  .navlink {
+    @apply rounded-full px-4 py-2 text-sm font-medium text-white/85 transition-colors hover:text-green;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.18em] text-purple;
+  }
+
+  /* Bebas Neue: single-weight, condensed, all-caps display face */
+  .display-xl {
+    @apply font-display font-normal text-ink;
+    font-size: clamp(3.75rem, 11vw, 7.5rem);
+    line-height: 0.9;
+    letter-spacing: 0.005em;
+  }
+
+  .display-lg {
+    @apply font-display font-normal text-ink;
+    font-size: clamp(3rem, 7.5vw, 5.5rem);
+    line-height: 0.92;
+    letter-spacing: 0.005em;
+  }
+
+  .display-md {
+    @apply font-display font-normal text-ink;
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    line-height: 0.95;
+    letter-spacing: 0.01em;
+  }
+}

@@ -1,0 +1,161 @@
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+  type ReactNode,
+} from "react";
+import { BLOG_POSTS, TESTIMONIALS, type BlogPost } from "./site";
+
+// ---------------------------------------------------------------------------
+// Content store, the backend seam for blog posts & stories.
+//
+// Today this persists to localStorage so the admin panel works immediately and
+// the front page updates live. To move to a real shared backend (Supabase),
+// only the load/save functions below need to change, the rest of the app reads
+// through useContent() and is unaffected.
+// ---------------------------------------------------------------------------
+
+export type Post = BlogPost & { id: string };
+
+export type Story = {
+  id: string;
+  title: string;
+  quote: string;
+  name: string;
+  role: string;
+  image: string;
+};
+
+type ContentState = { posts: Post[]; stories: Story[] };
+
+const STORAGE_KEY = "rehvamp.content.v2";
+
+const uid = () =>
+  (globalThis.crypto?.randomUUID?.() ??
+    `id-${Math.floor(performance.now() * 1000)}-${Math.random().toString(36).slice(2)}`);
+
+function seed(): ContentState {
+  return {
+    posts: BLOG_POSTS.map((p) => ({ ...p, id: uid() })),
+    stories: TESTIMONIALS.map((t) => ({
+      id: uid(),
+      title: t.title,
+      quote: t.quote,
+      name: t.name,
+      role: t.role,
+      image: t.image,
+    })),
+  };
+}
+
+function load(): ContentState {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw) as ContentState;
+      if (parsed?.posts && parsed?.stories) return parsed;
+    }
+  } catch {
+    /* ignore */
+  }
+  return seed();
+}
+
+function save(state: ContentState) {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+  } catch {
+    /* ignore */
+  }
+}
+
+export const slugify = (s: string) =>
+  s
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
+type ContentCtx = ContentState & {
+  savePost: (p: Partial<Post>) => void;
+  deletePost: (id: string) => void;
+  saveStory: (s: Partial<Story>) => void;
+  deleteStory: (id: string) => void;
+  resetToSeed: () => void;
+};
+
+const Ctx = createContext<ContentCtx | null>(null);
+
+export function ContentProvider({ children }: { children: ReactNode }) {
+  const [state, setState] = useState<ContentState>(() =>
+    typeof window === "undefined" ? seed() : load()
+  );
+
+  useEffect(() => {
+    save(state);
+  }, [state]);
+
+  const savePost: ContentCtx["savePost"] = (p) =>
+    setState((s) => {
+      const slug = p.slug && p.slug.trim() ? slugify(p.slug) : slugify(p.title ?? "post");
+      const base: Post = {
+        id: p.id ?? uid(),
+        slug,
+        title: p.title ?? "Untitled",
+        date: p.date ?? "",
+        excerpt: p.excerpt ?? "",
+        tags: p.tags ?? [],
+        image: p.image ?? "/images/blog/featured.webp",
+        body: p.body ?? [],
+      };
+      const exists = p.id && s.posts.some((x) => x.id === p.id);
+      return {
+        ...s,
+        posts: exists
+          ? s.posts.map((x) => (x.id === p.id ? base : x))
+          : [base, ...s.posts],
+      };
+    });
+
+  const deletePost: ContentCtx["deletePost"] = (id) =>
+    setState((s) => ({ ...s, posts: s.posts.filter((x) => x.id !== id) }));
+
+  const saveStory: ContentCtx["saveStory"] = (st) =>
+    setState((s) => {
+      const base: Story = {
+        id: st.id ?? uid(),
+        title: st.title ?? "Untitled",
+        quote: st.quote ?? "",
+        name: st.name ?? "",
+        role: st.role ?? "",
+        image: st.image ?? "/images/home/people-1.webp",
+      };
+      const exists = st.id && s.stories.some((x) => x.id === st.id);
+      return {
+        ...s,
+        stories: exists
+          ? s.stories.map((x) => (x.id === st.id ? base : x))
+          : [base, ...s.stories],
+      };
+    });
+
+  const deleteStory: ContentCtx["deleteStory"] = (id) =>
+    setState((s) => ({ ...s, stories: s.stories.filter((x) => x.id !== id) }));
+
+  const resetToSeed = () => setState(seed());
+
+  return (
+    <Ctx.Provider
+      value={{ ...state, savePost, deletePost, saveStory, deleteStory, resetToSeed }}
+    >
+      {children}
+    </Ctx.Provider>
+  );
+}
+
+export function useContent() {
+  const c = useContext(Ctx);
+  if (!c) throw new Error("useContent must be used within ContentProvider");
+  return c;
+}
