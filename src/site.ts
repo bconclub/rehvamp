@@ -167,6 +167,27 @@ export const BLOG_POSTS: BlogPost[] = [
     ],
   },
   {
+    slug: "supporting-families-through-crisis",
+    title: "Supporting Families Through Crisis: How Our Emergency Exit Guidance Initiative Made a Difference",
+    date: "June 12, 2026",
+    excerpt:
+      "When regional airspace disruptions left thousands uncertain about their next steps, Rehvamp Foundation responded with a clear mission: ensure vulnerable individuals and families had access to safe, lawful and practical pathways to safety.",
+    tags: ["Emergency", "GCC", "HumanitarianSupport"],
+    image: IMG.home.event3,
+    body: [
+      "When regional airspace disruptions left thousands of travelers uncertain about their next steps, Rehvamp Foundation responded with a clear mission: ensure that vulnerable individuals and families had access to safe, lawful and practical pathways to safety.",
+      "Over the past several months, our Emergency Exit Guidance Initiative has become a vital humanitarian coordination resource for expatriates, families, medical cases and individuals facing urgent travel challenges across the Gulf region.",
+      "At Rehvamp Foundation, we are not a transport operator. Our role is to serve as a humanitarian bridge between uncertainty and stability. When individuals and families find themselves stranded, disconnected from support networks or unsure of available travel options, our team helps them understand viable pathways, access critical information and connect with appropriate resources.",
+      "One of the greatest challenges faced by travelers during recent disruptions was understanding which routes remained available. Our team provided guidance on lawful travel options and regional transit pathways, including overland routes into Saudi Arabia via Riyadh and Jeddah, travel coordination into Oman through Muscat, connections through key GCC transit hubs and onward pathways to Turkey, Europe, Asia-Pacific and other international destinations.",
+      "For urgent humanitarian situations involving vulnerable individuals, medical cases and time-sensitive travel needs, we assisted with information and coordination regarding licensed private aviation services. This included guidance relating to private jet availability, emergency helicopter transfers, regulatory requirements, airspace permissions and civil aviation approvals.",
+      "Throughout the initiative, Rehvamp Foundation adopted a vulnerability-first approach. Priority support was directed toward families with young children, individuals requiring medical care, people facing immediate safety concerns and foreign nationals lacking local support networks.",
+      "A key component of our response focused on helping people reconnect with official government assistance programs. We encouraged and assisted travelers with embassy registration, consular communication, government repatriation programs, UK FCDO registration, US STEP enrollment and official evacuation updates.",
+      "Safety does not end once travel arrangements are secured. Many families required temporary support while waiting for onward travel or long-term solutions. Through our humanitarian network, we helped connect individuals with temporary accommodation guidance, community support referrals, welfare resources and family-focused stabilization support.",
+      "The Emergency Exit Guidance Initiative reflects Rehvamp Foundation's commitment to delivering practical humanitarian support when communities need it most. As regional conditions continue to evolve, we remain committed to strengthening partnerships, expanding humanitarian coordination capabilities and ensuring vulnerable individuals have access to the information and support they need to move from crisis toward stability.",
+      "Because survival is the beginning of renewal.",
+    ],
+  },
+  {
     slug: "be-careful-with-what-you-let-in",
     title: "Be Careful With What You Let In",
     date: "October 2, 2024",

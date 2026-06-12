@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-06-12 · About rebuild + Emergency Exit GCC update + blog post
+
+- About page rebuilt to match live one-to-one: removed Mission & Vision, replaced with Our Focus Areas (alternating purple/green cards), How We Work (pale-purple, image + copy), Join the Cause CTA.
+- Emergency Exit: updated status section from stale "March 2026 Overview" to current per-country GCC status (all 6 countries operational with individual detail cards + Rehvamp assessment + advisory).
+- Added new blog post: "Supporting Families Through Crisis" — full narrative of the Emergency Exit Guidance Initiative with 10 body paragraphs.
+- Emergency Exit page now links to the new blog post ("Read our full initiative report").
+
 ## 2026-06-11 · Phase 1, Legal, and home-trio one-to-one match
 
 - Home 2nd-section trio: pulled the live's exact side photos (trio-left / trio-right) and swapped them in.

@@ -2,9 +2,31 @@ import { Link } from "react-router-dom";
 import PageTransition from "../components/PageTransition";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
-import { Arrow, ICONS } from "../components/Icons";
-import { FOCUS_AREAS } from "../site";
+import { Arrow } from "../components/Icons";
 import { IMG } from "../images";
+
+const FOCUS = [
+  {
+    title: "Healthcare & Mental Health",
+    body: "Healing begins with care. We work to improve access to both physical and emotional support, so children feel safe, supported and seen.",
+    tone: "purple" as const,
+  },
+  {
+    title: "Access to Education",
+    body: "Growth comes through learning. We create opportunities for education, skills and empowerment so that every child can reach their fullest potential.",
+    tone: "green" as const,
+  },
+  {
+    title: "Anti-Bullying & Advocacy",
+    body: "Inspiration flourishes in safe spaces. We stand against harassment, discrimination and stigma, fostering environments where children are valued and protected.",
+    tone: "purple" as const,
+  },
+  {
+    title: "Empowerment & Resilience",
+    body: "To inspire others, children must first believe in themselves. We nurture confidence, resilience and self-worth so they can rise above adversity and become beacons of hope for others.",
+    tone: "green" as const,
+  },
+];
 
 export default function About() {
   return (
@@ -81,89 +103,74 @@ export default function About() {
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="bg-teal-50 py-16 md:py-20">
-        <div className="container-x grid gap-6 md:grid-cols-2">
-          <Reveal>
-            <div className="h-full rounded-3xl bg-white p-9 shadow-soft">
-              <h3 className="font-display text-3xl text-teal">Our Mission</h3>
-              <p className="mt-4 text-body">
-                To empower vulnerable children and young people through
-                healthcare, education and safe spaces, giving them the tools and
-                support they need to heal and thrive.
-              </p>
-            </div>
+      {/* Our Focus Areas */}
+      <section className="bg-green-100 py-16 md:py-24">
+        <div className="container-x">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <h2 className="display-lg text-ink">Our Focus Areas</h2>
           </Reveal>
-          <Reveal delay={0.1}>
-            <div className="h-full rounded-3xl bg-white p-9 shadow-soft">
-              <h3 className="font-display text-3xl text-green-600">Our Vision</h3>
-              <p className="mt-4 text-body">
-                A world where every child, regardless of background, can heal,
-                grow and inspire positive change in their communities and beyond.
-              </p>
-            </div>
-          </Reveal>
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {FOCUS.map((f, i) => {
+              const purple = f.tone === "purple";
+              return (
+                <Reveal key={f.title} delay={i * 0.08}>
+                  <div className={`h-full rounded-3xl p-7 shadow-card ${purple ? "bg-purple" : "bg-green"}`}>
+                    <h3 className={`font-display text-2xl ${purple ? "text-green" : "text-purple"}`}>
+                      {f.title}
+                    </h3>
+                    <p className={`mt-3 text-sm ${purple ? "text-white/85" : "text-ink/85"}`}>
+                      {f.body}
+                    </p>
+                  </div>
+                </Reveal>
+              );
+            })}
+          </div>
         </div>
       </section>
 
-      {/* Focus areas */}
-      <section className="container-x py-16 md:py-20">
-        <Reveal className="mx-auto max-w-2xl text-center">
-          <p className="eyebrow justify-center">What we do</p>
-          <h2 className="mt-3 display-md">Our focus areas</h2>
-        </Reveal>
-        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {FOCUS_AREAS.map((f, i) => {
-            const Icon = ICONS[f.icon as keyof typeof ICONS];
-            return (
-              <Reveal key={f.title} delay={i * 0.08}>
-                <div className="h-full rounded-3xl border border-teal-100 bg-white p-7 transition-transform duration-300 hover:-translate-y-1">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-xl bg-teal-50 text-teal">
-                    <Icon className="h-6 w-6" />
-                  </span>
-                  <h3 className="mt-5 font-display text-2xl text-ink">
-                    {f.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-body">{f.blurb}</p>
-                </div>
-              </Reveal>
-            );
-          })}
-        </div>
-      </section>
-
-      {/* How we work */}
-      <section className="bg-purple py-16 text-white md:py-20">
+      {/* How We Work */}
+      <section className="bg-purple-50 py-16 md:py-24">
         <div className="container-x grid items-center gap-12 lg:grid-cols-2">
           <Reveal>
-            <p className="eyebrow text-teal-200">How we work</p>
-            <h2 className="mt-3 text-white display-md">
-              Rooted in community, focused on impact
-            </h2>
-            <p className="mt-5 text-white/80">
-              We collaborate with local communities, partners and volunteers to
-              deliver practical, lasting support, meeting children where they
-              are and walking with them as they heal and grow.
-            </p>
-            <Link to="/get-involved" className="btn-green mt-7">
-              Join the cause <Arrow className="h-4 w-4" />
-            </Link>
+            <img
+              src={IMG.home.event3}
+              alt="Children supported by REHVAMP"
+              className="h-auto w-full rounded-[2rem] object-cover shadow-soft"
+            />
           </Reveal>
           <Reveal delay={0.1}>
-            <div className="grid grid-cols-2 gap-4">
-              {[IMG.about.a1, IMG.home.classroom, IMG.home.people2, IMG.home.people3].map(
-                (src, i) => (
-                  <img
-                    key={i}
-                    src={src}
-                    alt=""
-                    className={`w-full rounded-2xl object-cover ${i % 2 ? "h-40" : "h-56"}`}
-                  />
-                )
-              )}
-            </div>
+            <h2 className="display-lg text-ink">How We Work</h2>
+            <p className="mt-5 text-lg text-body">
+              We design programs rooted in compassion, addressing the challenges
+              that children and young people face every day. By collaborating with
+              communities, educators and advocates, we provide practical support
+              and build long-lasting impact.
+            </p>
           </Reveal>
         </div>
+      </section>
+
+      {/* Join the Cause */}
+      <section className="container-x py-16 md:py-20">
+        <Reveal>
+          <div className="relative overflow-hidden rounded-[2rem] bg-purple px-8 py-14 text-center text-white md:px-16">
+            <div className="pointer-events-none absolute -left-16 -top-16 h-64 w-64 rounded-full bg-green/30 blur-3xl" />
+            <h2 className="relative text-white display-md">Join the Cause</h2>
+            <p className="relative mx-auto mt-4 max-w-xl text-white/85">
+              Every child deserves the chance to Heal • Grow • Inspire. Join us as
+              a donor, volunteer or partner and help make it possible.
+            </p>
+            <div className="relative mt-7 flex flex-wrap justify-center gap-3">
+              <Link to="/get-involved" className="btn-green">
+                Donate Now <Arrow className="h-4 w-4" />
+              </Link>
+              <Link to="/get-involved" className="btn-ghost-white">
+                Get Involved
+              </Link>
+            </div>
+          </div>
+        </Reveal>
       </section>
     </PageTransition>
   );

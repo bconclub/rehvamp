@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import PageTransition from "../components/PageTransition";
 import Reveal from "../components/Reveal";
@@ -190,39 +191,127 @@ export default function EmergencyExit() {
         </div>
       </section>
 
-      {/* March 2026 Overview */}
+      {/* Current Regional Travel Situation */}
       <section className="bg-purple py-16 text-white md:py-20">
         <div className="container-x">
           <p className="eyebrow text-green">Current situation</p>
-          <h2 className="mt-3 text-white display-md">March 2026 Overview</h2>
-          <div className="mt-6 grid gap-6 lg:grid-cols-[1.4fr_0.6fr]">
+          <h2 className="mt-3 text-white display-md">Current Regional Travel Situation</h2>
+          <p className="mt-3 max-w-2xl text-white/80">
+            Regional aviation networks have largely resumed operations across the
+            GCC. Airlines continue to monitor security developments and occasional
+            airspace restrictions. Always verify flight status directly with your
+            airline before departure.
+          </p>
+
+          {/* Per-country status cards */}
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                abbr: "BH",
+                name: "Bahrain",
+                code: "BAH",
+                status: "Operational",
+                detail:
+                  "Bahrain International Airport is operational and airspace has reopened. Commercial services are running, though some airlines may continue schedule adjustments.",
+              },
+              {
+                abbr: "UAE",
+                name: "United Arab Emirates",
+                code: "DXB · AUH · SHJ",
+                status: "Operational",
+                detail:
+                  "Dubai, Abu Dhabi, Sharjah and other UAE airports are operating. The GCAA has announced resumption of normal air traffic. Monitor airline advisories for route-specific changes.",
+              },
+              {
+                abbr: "SA",
+                name: "Saudi Arabia",
+                code: "RUH · JED · DMM",
+                status: "Fully Operational",
+                detail:
+                  "Saudi Arabia remains a major regional transit and evacuation hub. Riyadh, Jeddah and Dammam have played an important role in maintaining regional connectivity throughout recent disruptions.",
+              },
+              {
+                abbr: "OM",
+                name: "Oman",
+                code: "MCT",
+                status: "Operational",
+                detail:
+                  "Muscat International Airport and Oman's network remain operational. A key gateway for onward connections across the Gulf, Europe, Asia and Africa.",
+              },
+              {
+                abbr: "QA",
+                name: "Qatar",
+                code: "DOH",
+                status: "Operational",
+                detail:
+                  "Hamad International Airport is operational and airspace has reopened. Qatar Airways and other carriers are restoring and expanding schedules as conditions stabilize.",
+              },
+              {
+                abbr: "KW",
+                name: "Kuwait",
+                code: "KWI",
+                status: "Operational",
+                detail:
+                  "Kuwait International Airport has resumed operations and airspace restrictions have eased significantly. Some carriers may still operate adjusted schedules.",
+              },
+            ].map((c) => (
+              <div key={c.name} className="rounded-2xl bg-white/10 p-5">
+                <div className="flex items-center justify-between">
+                  <span className="font-display text-lg text-white/40">{c.abbr}</span>
+                  <span className="rounded-full bg-green/20 px-3 py-0.5 text-xs font-semibold text-green">
+                    {c.status}
+                  </span>
+                </div>
+                <h3 className="mt-2 font-display text-xl text-white">{c.name}</h3>
+                <p className="text-xs font-semibold uppercase tracking-wider text-white/50">
+                  {c.code}
+                </p>
+                <p className="mt-2 text-sm text-white/75">{c.detail}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Assessment + Advisory + CTA */}
+          <div className="mt-8 grid gap-6 lg:grid-cols-[1.4fr_0.6fr]">
             <div className="rounded-2xl bg-white/10 p-6">
               <h3 className="font-display text-2xl text-green">
-                Airspace & Airport Status
+                Rehvamp Foundation Assessment
               </h3>
-              <p className="mt-3 text-white/85">
-                Dubai airports (DXB & DWC), operations suspended. Abu Dhabi (AUH),
-                some flights resuming. Bahrain (BAH), heavily disrupted. Saudi
-                Arabia (RUH), largely open, primary exit hub. Oman (MCT),
-                intermittent operations. Emergency visas and private airlift via
-                jets and helicopters available through licensed providers.
+              <p className="mt-3 text-sm text-white/85">
+                Based on current transportation availability, the most viable
+                regional transit hubs remain: Riyadh and Jeddah (Saudi Arabia)
+                for onward international travel; Muscat (Oman) for regional
+                coordination and international connections; Dubai and Abu Dhabi
+                (UAE) for global commercial flight access; Doha (Qatar) for
+                long-haul connections; Bahrain and Kuwait as increasingly stable
+                transit options as regional operations normalize.
               </p>
-              <p className="mt-3 text-sm font-semibold text-white">
-                Conditions are fluid. Always verify before travelling.
+              <p className="mt-4 text-sm font-semibold text-white">
+                Important Advisory: While commercial aviation across the GCC has
+                substantially recovered, the security environment remains dynamic.
+                Verify flights directly with airlines, register with your embassy,
+                confirm visa and transit requirements, and maintain contingency
+                travel plans where possible.
               </p>
+              <Link
+                to="/blog/supporting-families-through-crisis"
+                className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-green hover:gap-3 transition-all"
+              >
+                Read our full initiative report <Arrow className="h-4 w-4" />
+              </Link>
             </div>
             <div className="rounded-2xl bg-white/10 p-6">
               <h3 className="font-display text-2xl text-green">Reach Us Directly</h3>
               <p className="mt-3 text-sm text-white/85">
-                If you are stranded in the UAE or Bahrain, contact us on WhatsApp.
-                Our team operates 24 hours a day. All communication is
-                confidential.
+                If you or your family need guidance, contact us on WhatsApp. Our
+                team operates 24 hours a day. All communication is confidential.
               </p>
               <a href={tel} className="btn-green mt-5 w-full">
                 Request Emergency Assistance <Arrow className="h-4 w-4" />
               </a>
             </div>
           </div>
+
           <p className="mt-8 text-center font-display text-2xl text-white/90">
             Because survival is the beginning of renewal.
           </p>
