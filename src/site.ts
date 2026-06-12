@@ -129,6 +129,7 @@ export type BlogPost = {
   tags: string[];
   image: string;
   body: BodyBlock[];
+  relatedPage?: { label: string; to: string };
 };
 
 export const BLOG_POSTS: BlogPost[] = [
@@ -141,10 +142,30 @@ export const BLOG_POSTS: BlogPost[] = [
     tags: ["Gaza", "Solidarity", "FromGroundZero"],
     image: IMG.founder.festival,
     body: [
-      { type: "p", text: "REHVAMP Foundation was proud to attend the UK premiere of From Ground Zero, Palestine's official Academy Award submission, featuring the work of 22 filmmakers from Gaza." },
-      { type: "p", text: "The evening was a powerful reminder that storytelling is itself an act of resilience. Each short film carried the voice of someone determined to be heard, even amid unimaginable circumstances." },
-      { type: "p", text: "Our presence reflects a simple commitment: to stand in solidarity, to amplify local voices, and to support the long road of rebuilding through our Heal, Grow and Inspire mission." },
-      { type: "p", text: "We left more committed than ever to the children and families whose futures depend on collective action, and on a world willing to listen." },
+      { type: "h2", text: "Standing with Gaza's Storytellers" },
+      { type: "p", text: "On 23 January 2025, the RehVamp Foundation proudly stood represented at the UK premiere of From Ground Zero, Palestine's official submission to the 97th Academy Awards. Our founder, Ishita Reha Gupta, attended this historic event, joining global audiences in honoring the resilience and creativity of the Gazan people." },
+      { type: "p", text: "The film, an anthology created by 22 Gazan filmmakers, brings together documentaries, animations, fiction and experimental shorts. Each story offers an unflinching glimpse into life amid conflict — while highlighting the strength, endurance and unwavering spirit of a community determined to survive and create." },
+      { type: "p", text: "This premiere came at a critical time, coinciding with a fragile ceasefire in Gaza. For the RehVamp Foundation, it was a moment not only to reflect on the immense suffering faced by the Palestinian people but also to reaffirm our mission: to Heal, Grow and Inspire through solidarity, advocacy and the amplification of voices that must be heard." },
+      { type: "h2", text: "RehVamp's Statement of Solidarity" },
+      { type: "p", text: "In response to this powerful event, the RehVamp Foundation emphasized:" },
+      { type: "ul", items: [
+        "The urgent need for rebuilding Gaza, independent of lengthy political negotiations",
+        "The importance of centering local voices in all reconstruction and recovery efforts",
+        "Our deep appreciation for all who have advocated for ceasefire, peace and justice",
+      ]},
+      { type: "p", text: "While the ceasefire offers hope, the journey toward lasting peace and freedom is far from over. The RehVamp Foundation believes that global action, empathy and unity are essential in ensuring that the people of Gaza are not only remembered but supported in rebuilding their lives and communities." },
+      { type: "h2", text: "Why This Matters to RehVamp" },
+      { type: "p", text: "Our work has always been about transforming pain into possibility. The Gazan filmmakers behind From Ground Zero embody this vision. Through art, they show us that even in the darkest times, resilience and creativity can shine." },
+      { type: "p", text: "By standing with them, the RehVamp Foundation continues its commitment to building bridges across borders, nurturing hope and inspiring change. We believe that storytelling is not just about remembrance — it is about creating pathways for healing and collective growth." },
+      { type: "h2", text: "Looking Ahead" },
+      { type: "p", text: "At the RehVamp Foundation, we are inspired by the courage of Gaza's storytellers and communities. Their resilience echoes our belief that transformation begins when we come together." },
+      { type: "p", text: "As Gaza embarks on the long road to recovery, let us remember:" },
+      { type: "ul", items: [
+        "Healing begins with solidarity.",
+        "Growth is sustained by collective action.",
+        "Inspiration emerges when communities rise, rebuild and reclaim their future.",
+      ]},
+      { type: "p", text: "We invite you to join the RehVamp Foundation in amplifying these voices, supporting resilience and walking alongside communities as they heal, grow and inspire the world." },
     ],
   },
   {
@@ -262,6 +283,7 @@ export const BLOG_POSTS: BlogPost[] = [
       { type: "p", text: "The Emergency Exit Guidance Initiative reflects Rehvamp Foundation's commitment to delivering practical humanitarian support when communities need it most. Whether assisting a family seeking a safe route home, helping a medical case navigate complex travel requirements or connecting vulnerable individuals with critical resources, our mission remains unchanged: to provide trusted guidance, compassionate support and safe pathways forward during times of uncertainty." },
       { type: "p", text: "As regional conditions evolve, Rehvamp Foundation will continue strengthening partnerships, expanding humanitarian coordination capabilities and ensuring vulnerable individuals have access to the information and support they need to move from crisis toward stability." },
     ],
+    relatedPage: { label: "Emergency Exit Guidance", to: "/emergency-exit-guidance" },
   },
   {
     slug: "be-careful-with-what-you-let-in",

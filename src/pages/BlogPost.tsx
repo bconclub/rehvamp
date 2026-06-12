@@ -107,7 +107,26 @@ export default function BlogPost() {
             ))}
           </div>
 
-          <div className="mt-10 flex items-center gap-3 rounded-2xl bg-green-100 p-6">
+          {post.relatedPage && (
+            <div className="mt-10 flex items-center justify-between gap-4 rounded-2xl bg-purple p-6 flex-wrap">
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-wider text-green">
+                  Related Programme
+                </p>
+                <p className="mt-1 font-display text-xl text-white">
+                  {post.relatedPage.label}
+                </p>
+              </div>
+              <Link
+                to={post.relatedPage.to}
+                className="btn-green shrink-0"
+              >
+                View Page <Arrow className="h-4 w-4" />
+              </Link>
+            </div>
+          )}
+
+          <div className="mt-5 flex items-center gap-3 rounded-2xl bg-green-100 p-6">
             <span className="h-2 w-2 shrink-0 rounded-full bg-green" />
             <p className="text-sm text-body">
               Inspired by this story?{" "}
