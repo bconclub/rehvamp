@@ -108,7 +108,7 @@ function PostsAdmin() {
           <h2 className="font-display text-2xl text-ink">Blog Posts ({posts.length})</h2>
           <button
             onClick={() =>
-              setEditing({ title: "", date: "", excerpt: "", tags: [], body: [""], image: IMG.blog.featured })
+              setEditing({ title: "", date: "", excerpt: "", tags: [], body: [{ type: "p", text: "" }], image: IMG.blog.featured })
             }
             className="btn-primary !px-5 !py-2.5"
           >
@@ -183,7 +183,7 @@ function PostForm({
     excerpt: initial.excerpt ?? "",
     tags: (initial.tags ?? []).join(", "),
     image: initial.image ?? IMG.blog.featured,
-    body: (initial.body ?? [""]).join("\n\n"),
+    body: (initial.body ?? []).map((b) => ("text" in b ? b.text : "items" in b ? b.items.join("\n") : "")).filter(Boolean).join("\n\n"),
   });
   const set = (k: string, v: string) => setF((s) => ({ ...s, [k]: v }));
 
@@ -199,7 +199,7 @@ function PostForm({
           excerpt: f.excerpt,
           tags: f.tags.split(",").map((t) => t.trim()).filter(Boolean),
           image: f.image,
-          body: f.body.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean),
+          body: f.body.split(/\n{2,}/).map((p) => p.trim()).filter(Boolean).map((text) => ({ type: "p" as const, text })),
         });
       }}
       className="space-y-4"

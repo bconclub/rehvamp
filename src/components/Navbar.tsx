@@ -8,6 +8,7 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [programsOpen, setProgramsOpen] = useState(false);
+  const [subOpen, setSubOpen] = useState<string | null>(null);
   const location = useLocation();
 
   useEffect(() => {
@@ -76,13 +77,41 @@ export default function Navbar() {
                       className="absolute left-0 top-full w-72 rounded-2xl border border-purple-100 bg-white p-2 shadow-soft"
                     >
                       {item.children.map((c) => (
-                        <li key={c.to}>
+                        <li
+                          key={c.to}
+                          className="relative"
+                          onMouseEnter={() => "sub" in c && c.sub ? setSubOpen(c.label) : setSubOpen(null)}
+                          onMouseLeave={() => setSubOpen(null)}
+                        >
                           <Link
                             to={c.to}
-                            className="block rounded-xl px-4 py-2.5 text-sm font-medium text-body transition-colors hover:bg-purple-50 hover:text-purple"
+                            className="flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-medium text-body transition-colors hover:bg-purple-50 hover:text-purple"
                           >
                             {c.label}
+                            {"sub" in c && c.sub && (
+                              <span className="ml-2 text-xs text-purple/50">▸</span>
+                            )}
                           </Link>
+                          {"sub" in c && c.sub && subOpen === c.label && (
+                            <motion.ul
+                              initial={{ opacity: 0, x: 8 }}
+                              animate={{ opacity: 1, x: 0 }}
+                              exit={{ opacity: 0, x: 8 }}
+                              transition={{ duration: 0.15 }}
+                              className="absolute left-full top-0 w-52 rounded-2xl border border-purple-100 bg-white p-2 shadow-soft"
+                            >
+                              {c.sub.map((s) => (
+                                <li key={s.to}>
+                                  <Link
+                                    to={s.to}
+                                    className="block rounded-xl px-4 py-2.5 text-sm font-medium text-body transition-colors hover:bg-purple-50 hover:text-purple"
+                                  >
+                                    {s.label}
+                                  </Link>
+                                </li>
+                              ))}
+                            </motion.ul>
+                          )}
                         </li>
                       ))}
                     </motion.ul>
@@ -212,6 +241,21 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
                         >
                           {c.label}
                         </Link>
+                        {"sub" in c && c.sub && (
+                          <ul className="ml-4 mt-0.5 space-y-0.5 border-l border-white/15 pl-3">
+                            {c.sub.map((s) => (
+                              <li key={s.to}>
+                                <Link
+                                  to={s.to}
+                                  onClick={onClose}
+                                  className="block rounded-lg px-3 py-2 text-sm font-medium text-white/65 transition-colors hover:bg-white/10 hover:text-white"
+                                >
+                                  {s.label}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </li>
                     ))}
                   </ul>
