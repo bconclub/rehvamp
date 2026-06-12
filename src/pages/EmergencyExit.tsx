@@ -91,11 +91,16 @@ export default function EmergencyExit() {
             pathways by road, private jets, helicopters and emergency visa
             facilitation.
           </p>
-          <div className="mt-8 inline-flex flex-wrap items-center gap-4 rounded-2xl bg-white/10 p-2 pr-6 backdrop-blur">
-            <a href={tel} className="btn-green">
-              <Phone className="h-4 w-4" /> 24/7 WhatsApp
-            </a>
-            <span className="text-sm text-white/80">{SITE.phoneMobile}</span>
+          <div className="mt-8 flex flex-wrap items-center gap-4">
+            <div className="inline-flex items-center gap-4 rounded-2xl bg-white/10 p-2 pr-6 backdrop-blur">
+              <a href={tel} className="btn-green">
+                <Phone className="h-4 w-4" /> 24/7 WhatsApp
+              </a>
+              <span className="text-sm text-white/80">{SITE.phoneMobile}</span>
+            </div>
+            <Link to="/emergency-exit-guidance/log" className="btn-ghost-white">
+              View Activity Log <Arrow className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>

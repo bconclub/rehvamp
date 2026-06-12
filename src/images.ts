@@ -41,6 +41,9 @@ export const IMG = {
     g3: "/images/gaza/gaza-3.jpg",
     g4: "/images/gaza/gaza-4.jpg",
   },
+  emergencyExit: {
+    hero: "/images/emergency-exit/emergency-exit.jpg",
+  },
   challenge: {
     thirdSpace: "/images/challenge/third-space.png",
     aire: "/images/challenge/aire.png",

@@ -10,6 +10,7 @@ import SaveGaza from "./pages/SaveGaza";
 import Challenge from "./pages/Challenge";
 import PhaseHeal from "./pages/PhaseHeal";
 import EmergencyExit from "./pages/EmergencyExit";
+import EmergencyExitLog from "./pages/EmergencyExitLog";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Legal from "./pages/Legal";
@@ -31,6 +32,7 @@ export default function App() {
           <Route path="/challenge" element={<Challenge />} />
           <Route path="/challenge/phase-1-heal" element={<PhaseHeal />} />
           <Route path="/emergency-exit-guidance" element={<EmergencyExit />} />
+          <Route path="/emergency-exit-guidance/log" element={<EmergencyExitLog />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/privacy-policy" element={<Legal kind="privacy" />} />
