@@ -23,7 +23,7 @@ export const IMG = {
     circle3: "/images/home/circle-3.jpg",
   },
   founder: {
-    portrait: "/images/founder/ishita.jpg", // Ishita Reha Gupta
+    portrait: "/images/founder/ishita-rhea-gupta.jpg", // Ishita Rhea Gupta — real portrait
     festival: "/images/founder/ishita-festival.jpg",
     certificate: "/images/founder/ishita-certificate.jpg",
   },

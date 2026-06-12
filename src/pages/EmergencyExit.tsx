@@ -207,7 +207,7 @@ export default function EmergencyExit() {
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {[
               {
-                abbr: "BH",
+                cc: "bh",
                 name: "Bahrain",
                 code: "BAH",
                 status: "Operational",
@@ -215,7 +215,7 @@ export default function EmergencyExit() {
                   "Bahrain International Airport is operational and airspace has reopened. Commercial services are running, though some airlines may continue schedule adjustments.",
               },
               {
-                abbr: "UAE",
+                cc: "ae",
                 name: "United Arab Emirates",
                 code: "DXB · AUH · SHJ",
                 status: "Operational",
@@ -223,7 +223,7 @@ export default function EmergencyExit() {
                   "Dubai, Abu Dhabi, Sharjah and other UAE airports are operating. The GCAA has announced resumption of normal air traffic. Monitor airline advisories for route-specific changes.",
               },
               {
-                abbr: "SA",
+                cc: "sa",
                 name: "Saudi Arabia",
                 code: "RUH · JED · DMM",
                 status: "Fully Operational",
@@ -231,7 +231,7 @@ export default function EmergencyExit() {
                   "Saudi Arabia remains a major regional transit and evacuation hub. Riyadh, Jeddah and Dammam have played an important role in maintaining regional connectivity throughout recent disruptions.",
               },
               {
-                abbr: "OM",
+                cc: "om",
                 name: "Oman",
                 code: "MCT",
                 status: "Operational",
@@ -239,7 +239,7 @@ export default function EmergencyExit() {
                   "Muscat International Airport and Oman's network remain operational. A key gateway for onward connections across the Gulf, Europe, Asia and Africa.",
               },
               {
-                abbr: "QA",
+                cc: "qa",
                 name: "Qatar",
                 code: "DOH",
                 status: "Operational",
@@ -247,7 +247,7 @@ export default function EmergencyExit() {
                   "Hamad International Airport is operational and airspace has reopened. Qatar Airways and other carriers are restoring and expanding schedules as conditions stabilize.",
               },
               {
-                abbr: "KW",
+                cc: "kw",
                 name: "Kuwait",
                 code: "KWI",
                 status: "Operational",
@@ -257,7 +257,14 @@ export default function EmergencyExit() {
             ].map((c) => (
               <div key={c.name} className="rounded-2xl bg-white/10 p-5">
                 <div className="flex items-center justify-between">
-                  <span className="font-display text-lg text-white/40">{c.abbr}</span>
+                  <img
+                    src={`https://flagcdn.com/w40/${c.cc}.png`}
+                    srcSet={`https://flagcdn.com/w80/${c.cc}.png 2x`}
+                    width={40}
+                    height={27}
+                    alt={c.name}
+                    className="rounded-sm object-cover"
+                  />
                   <span className="rounded-full bg-green/20 px-3 py-0.5 text-xs font-semibold text-green">
                     {c.status}
                   </span>

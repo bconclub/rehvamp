@@ -26,7 +26,6 @@ export const NAV = [
     children: [
       { label: "Save Gaza's Children", to: "/save-gazas-children" },
       { label: "Digital Well-Being Challenge", to: "/challenge" },
-      { label: "Phase 1: Heal", to: "/challenge/phase-1-heal" },
       { label: "Emergency Exit Guidance", to: "/emergency-exit-guidance" },
     ],
   },
