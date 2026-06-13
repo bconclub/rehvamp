@@ -1,5 +1,7 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { submitToSheet } from "../lib/submitToSheet";
+import { Check } from "./Icons";
 
 // Newsletter sign-up used in two places:
 //  - "full"    : home footer (first name, last name, email), light inputs
@@ -37,15 +39,26 @@ export default function NewsletterForm({
 
   if (sent) {
     return (
-      <p
+      <motion.div
+        initial={{ opacity: 0, x: 48 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
         className={
           variant === "full"
-            ? "rounded-xl bg-white/15 px-4 py-3 text-center font-semibold text-white sm:col-span-2"
-            : "mt-4 rounded-xl bg-white/15 px-4 py-3 text-center text-sm font-semibold text-white"
+            ? "flex items-center justify-center gap-3 rounded-xl bg-white/15 px-4 py-3 font-semibold text-white sm:col-span-2"
+            : "mt-4 flex items-center justify-center gap-2.5 rounded-xl bg-white/15 px-4 py-3 text-sm font-semibold text-white"
         }
       >
-        You're subscribed, thank you! 🌿
-      </p>
+        <motion.span
+          initial={{ scale: 0, rotate: -30 }}
+          animate={{ scale: 1, rotate: 0 }}
+          transition={{ delay: 0.25, type: "spring", stiffness: 420, damping: 15 }}
+          className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-green text-purple"
+        >
+          <Check className="h-4 w-4" />
+        </motion.span>
+        You're subscribed, thank you!
+      </motion.div>
     );
   }
 
