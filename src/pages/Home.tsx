@@ -7,23 +7,7 @@ import { FOCUS_AREAS } from "../site";
 import { useContent } from "../store";
 import { IMG } from "../images";
 
-const VIDEOS: { title: string; caption: string; id: string }[] = [
-  {
-    title: "Doom Scrolling & Mental Health",
-    caption: "How endless scrolling is affecting young minds — and what we can do.",
-    id: "",
-  },
-  {
-    title: "Tackling Bullying Together",
-    caption: "Real stories, real impact. How communities are standing up to bullying.",
-    id: "",
-  },
-  {
-    title: "Digital Well-Being for Young People",
-    caption: "Building healthier habits in a hyperconnected world.",
-    id: "",
-  },
-];
+const VIMEO_ID = "1200983875";
 
 const BE_THE_CHANGE = [
   {
@@ -223,31 +207,17 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {VIDEOS.map((v, i) => (
-              <Reveal key={v.title} delay={i * 0.1}>
-                <div className="overflow-hidden rounded-3xl bg-white/10">
-                  {v.id ? (
-                    <iframe
-                      src={`https://www.youtube.com/embed/${v.id}`}
-                      title={v.title}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                      allowFullScreen
-                      className="aspect-video w-full"
-                    />
-                  ) : (
-                    <div className="flex aspect-video items-center justify-center bg-white/5">
-                      <p className="text-sm font-semibold text-white/30">Video coming soon</p>
-                    </div>
-                  )}
-                  <div className="p-5">
-                    <p className="font-display text-xl text-white">{v.title}</p>
-                    <p className="mt-1 text-sm text-white/65">{v.caption}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <Reveal className="mx-auto mt-12 max-w-3xl">
+            <div className="overflow-hidden rounded-3xl bg-white/10 shadow-card">
+              <iframe
+                src={`https://player.vimeo.com/video/${VIMEO_ID}`}
+                title="Together, We Can Make a Difference"
+                allow="autoplay; fullscreen; picture-in-picture"
+                allowFullScreen
+                className="aspect-video w-full"
+              />
+            </div>
+          </Reveal>
 
           <Reveal className="mt-14 text-center">
             <p className="mb-6 text-lg text-white/70">Ready to make a difference?</p>
