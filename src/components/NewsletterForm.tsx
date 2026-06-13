@@ -2,8 +2,8 @@ import { useState } from "react";
 import { submitToSheet } from "../lib/submitToSheet";
 
 // Newsletter sign-up used in two places:
-//  - "full"    : home footer (first name, last name, email) — light inputs
-//  - "compact" : blog sidebar (email only) — dark inputs on a purple card
+//  - "full"    : home footer (first name, last name, email), light inputs
+//  - "compact" : blog sidebar (email only), dark inputs on a purple card
 export default function NewsletterForm({
   variant,
   source,
@@ -44,7 +44,7 @@ export default function NewsletterForm({
             : "mt-4 rounded-xl bg-white/15 px-4 py-3 text-center text-sm font-semibold text-white"
         }
       >
-        You're subscribed — thank you! 🌿
+        You're subscribed, thank you! 🌿
       </p>
     );
   }
@@ -71,7 +71,7 @@ export default function NewsletterForm({
         />
         {error && (
           <p className="text-sm font-semibold text-green sm:col-span-2">
-            Something went wrong — please try again.
+            Something went wrong, please try again.
           </p>
         )}
         <button
@@ -95,7 +95,7 @@ export default function NewsletterForm({
       />
       {error && (
         <p className="text-sm font-semibold text-green">
-          Something went wrong — please try again.
+          Something went wrong, please try again.
         </p>
       )}
       <button disabled={submitting} className="btn-green w-full disabled:opacity-60">

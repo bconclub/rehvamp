@@ -39,7 +39,7 @@ export default function Blog() {
               <img
                 src={featured.image}
                 alt={featured.title}
-                className="h-full min-h-[260px] w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="h-full min-h-[300px] w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
               />
             </div>
             <div className="flex flex-col justify-center md:py-6 md:pr-6">
@@ -69,7 +69,7 @@ export default function Blog() {
                   <img
                     src={post.image}
                     alt={post.title}
-                    className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="h-56 w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <h3 className="mt-5 font-display text-2xl leading-tight text-green">

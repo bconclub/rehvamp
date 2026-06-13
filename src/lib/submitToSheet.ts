@@ -5,7 +5,7 @@
 //
 // We POST as text/plain so the browser does NOT fire a CORS preflight, and
 // use mode:"no-cors" because Apps Script Web Apps don't return CORS headers.
-// The response is opaque, so we treat a completed request as success — this
+// The response is opaque, so we treat a completed request as success, this
 // is the standard, reliable pattern for posting to Apps Script from a SPA.
 
 const ENDPOINT = import.meta.env.VITE_SHEET_ENDPOINT as string | undefined;

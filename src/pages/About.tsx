@@ -58,7 +58,7 @@ export default function About() {
             <img
               src={IMG.about.a1}
               alt="Children supported by REHVAMP"
-              className="h-[360px] w-full rounded-[2rem] object-cover shadow-soft"
+              className="h-[360px] w-full rounded-[2rem] object-cover object-top shadow-soft"
             />
           </Reveal>
         </div>
@@ -96,7 +96,7 @@ export default function About() {
               <img
                 src={IMG.founder.about}
                 alt="Ishita Gupta, Founder"
-                className="h-[460px] w-full object-cover md:h-[560px]"
+                className="h-[460px] w-full object-cover object-top md:h-[560px]"
               />
             </div>
           </Reveal>

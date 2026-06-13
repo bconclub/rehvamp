@@ -70,7 +70,7 @@ export default function Home() {
             <img
               src={IMG.home.trioLeft}
               alt="Children supported by REHVAMP"
-              className="h-full min-h-[280px] w-full rounded-3xl object-cover shadow-soft"
+              className="h-full min-h-[320px] w-full rounded-3xl object-cover object-top shadow-soft"
             />
           </Reveal>
 
@@ -116,7 +116,7 @@ export default function Home() {
             <img
               src={IMG.home.trioRight}
               alt="A group of children"
-              className="h-full min-h-[280px] w-full rounded-3xl object-cover shadow-soft"
+              className="h-full min-h-[320px] w-full rounded-3xl object-cover object-top shadow-soft"
             />
           </Reveal>
         </div>
@@ -186,7 +186,7 @@ export default function Home() {
                   <img
                     src={c.image}
                     alt=""
-                    className="mt-auto h-[300px] w-full object-cover"
+                    className="mt-auto h-[340px] w-full object-cover object-top"
                   />
                 </div>
               </Reveal>
@@ -195,7 +195,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6 - TOGETHER, WE MAKE A DIFFERENCE — video section */}
+      {/* 6 - TOGETHER, WE MAKE A DIFFERENCE, video section */}
       <section className="bg-purple py-20 md:py-28">
         <div className="container-x">
           <Reveal className="mx-auto max-w-2xl text-center">
@@ -205,7 +205,7 @@ export default function Home() {
             </h2>
             <p className="mt-4 text-lg text-white/80">
               Watch how Rehvamp is tackling doom scrolling, bullying and digital
-              well-being — and how you can be part of the change.
+              well-being, and how you can be part of the change.
             </p>
           </Reveal>
 

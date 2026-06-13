@@ -26,7 +26,7 @@ function Block({ b, i }: { b: BodyBlock; i: number }) {
           </p>
           {b.by && (
             <cite className="mt-3 block text-sm font-semibold not-italic text-purple">
-              — {b.by}
+              {b.by}
             </cite>
           )}
         </blockquote>
@@ -94,7 +94,7 @@ export default function BlogPost() {
           <img
             src={post.image}
             alt={post.title}
-            className="h-[280px] w-full rounded-[2rem] object-cover shadow-soft md:h-[440px]"
+            className="h-[400px] w-full rounded-[2rem] object-cover object-top shadow-soft md:h-[480px]"
           />
         </Reveal>
       </div>

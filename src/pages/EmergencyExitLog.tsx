@@ -138,7 +138,7 @@ export default function EmergencyExitLog() {
                       <Check className="h-4 w-4 text-white" />
                     </div>
 
-                    {/* Card — alternates left/right on desktop */}
+                    {/* Card, alternates left/right on desktop */}
                     <div className={`flex-1 md:w-[calc(50%-2.5rem)] ${i % 2 === 0 ? "md:pr-12" : "md:pl-12"}`}>
                       <div className={`rounded-3xl p-6 shadow-soft ${isLaunch ? "bg-purple text-white" : isUpdate ? "bg-green-100" : "bg-white border border-purple-100"}`}>
                         <div className="flex items-center justify-between gap-3 flex-wrap">

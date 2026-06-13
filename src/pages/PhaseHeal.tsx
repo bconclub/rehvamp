@@ -1,9 +1,16 @@
-import { useState, type ReactNode } from "react";
+import { useRef, useState, type ReactNode } from "react";
 import PageTransition from "../components/PageTransition";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 import { Arrow, Check, Shield } from "../components/Icons";
 import { submitToSheet, fileToBase64 } from "../lib/submitToSheet";
+
+const FORM_STEPS = [
+  "About You",
+  "Your Baseline",
+  "Progress & Reflection",
+  "Evidence & Consent",
+];
 
 const HELPS_YOU = [
   "Break unhealthy digital habits",
@@ -47,6 +54,33 @@ export default function PhaseHeal() {
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState(false);
+  const [step, setStep] = useState(0);
+  const formRef = useRef<HTMLFormElement>(null);
+  const lastStep = FORM_STEPS.length - 1;
+
+  // Validate just the fields inside the current step before advancing.
+  function validateStep(idx: number) {
+    const fields = formRef.current?.querySelectorAll<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >(`[data-step="${idx}"] input, [data-step="${idx}"] select, [data-step="${idx}"] textarea`);
+    if (!fields) return true;
+    for (const f of Array.from(fields)) {
+      if (!f.checkValidity()) {
+        f.reportValidity();
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function goTo(next: number) {
+    setStep(next);
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function nextStep() {
+    if (validateStep(step)) goTo(Math.min(step + 1, lastStep));
+  }
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -175,121 +209,195 @@ export default function PhaseHeal() {
                 </p>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="mt-8 space-y-10">
-                <FormSection n="1" title="Participant Information">
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <Field label="Full Name" required>
-                      <input required name="fullName" className="input" placeholder="Your name" />
-                    </Field>
-                    <Field label="Email Address" required>
-                      <input required name="email" type="email" className="input" placeholder="you@email.com" />
-                    </Field>
-                    <Field label="Age Range (Optional)">
-                      <input name="ageRange" className="input" placeholder="e.g. 25-34" />
-                    </Field>
-                    <Field label="City / Location (Optional)">
-                      <input name="city" className="input" placeholder="e.g. London, UK" />
-                    </Field>
+              <>
+                {/* Step progress */}
+                <div className="mt-7">
+                  <div className="flex items-center justify-between">
+                    {FORM_STEPS.map((label, i) => {
+                      const done = i < step;
+                      const active = i === step;
+                      return (
+                        <div key={label} className="flex flex-1 flex-col items-center">
+                          <span
+                            className={`flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold transition-colors ${
+                              active
+                                ? "bg-purple text-white"
+                                : done
+                                ? "bg-green text-purple"
+                                : "bg-purple-50 text-purple/50"
+                            }`}
+                          >
+                            {done ? <Check className="h-4 w-4" /> : i + 1}
+                          </span>
+                          <span
+                            className={`mt-2 hidden text-center text-xs font-semibold sm:block ${
+                              active ? "text-purple" : "text-body/60"
+                            }`}
+                          >
+                            {label}
+                          </span>
+                        </div>
+                      );
+                    })}
                   </div>
-                </FormSection>
-
-                <FormSection n="2" title="Intention & Motivation">
-                  <Field label="What's your main digital-habit focus?" required>
-                    <input required name="focus" className="input" placeholder="e.g. less night-time scrolling" />
-                  </Field>
-                  <Field label="Why are you joining the HEAL phase?">
-                    <textarea name="motivation" rows={3} className="input resize-none" placeholder="Your motivation" />
-                  </Field>
-                </FormSection>
-
-                <FormSection n="3" title="Baseline Digital Record">
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <Field label="Average daily screen time (before)" required>
-                      <select required name="baselineScreenTime" className="input" defaultValue="">
-                        <option value="" disabled>Select…</option>
-                        {SCREEN_TIMES.map((t) => <option key={t}>{t}</option>)}
-                      </select>
-                    </Field>
-                    <Field label="Upload a screenshot of your baseline screen time" required>
-                      <input required name="baselineScreenshot" type="file" accept="image/*" className="file-input" />
-                    </Field>
+                  <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-purple-50">
+                    <div
+                      className="h-full rounded-full bg-green transition-all duration-300"
+                      style={{ width: `${((step + 1) / FORM_STEPS.length) * 100}%` }}
+                    />
                   </div>
-                </FormSection>
-
-                <FormSection n="4" title="HEAL Actions Taken">
-                  <p className="text-sm font-semibold text-ink">
-                    Which HEAL practices did you actively use?
+                  <p className="mt-2 text-xs font-semibold text-body/60 sm:hidden">
+                    Step {step + 1} of {FORM_STEPS.length} · {FORM_STEPS[step]}
                   </p>
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    {HEAL_PRACTICES.map((p) => (
-                      <label key={p} className="flex items-start gap-3 rounded-xl border border-purple-100 p-3 text-sm text-body">
-                        <input type="checkbox" name="practices" value={p} className="mt-0.5 h-4 w-4 accent-[#7BC950]" />
-                        <span>{p}</span>
-                      </label>
-                    ))}
+                </div>
+
+                <form ref={formRef} onSubmit={handleSubmit} className="mt-8">
+                  {/* Step 1 — About You */}
+                  <div data-step={0} className={step === 0 ? "space-y-10" : "hidden"}>
+                    <FormSection n="1" title="Participant Information">
+                      <div className="grid gap-5 sm:grid-cols-2">
+                        <Field label="Full Name" required>
+                          <input required name="fullName" className="input" placeholder="Your name" />
+                        </Field>
+                        <Field label="Email Address" required>
+                          <input required name="email" type="email" className="input" placeholder="you@email.com" />
+                        </Field>
+                        <Field label="Age Range (Optional)">
+                          <input name="ageRange" className="input" placeholder="e.g. 25-34" />
+                        </Field>
+                        <Field label="City / Location (Optional)">
+                          <input name="city" className="input" placeholder="e.g. London, UK" />
+                        </Field>
+                      </div>
+                    </FormSection>
+
+                    <FormSection n="2" title="Intention & Motivation">
+                      <Field label="What's your main digital-habit focus?" required>
+                        <input required name="focus" className="input" placeholder="e.g. less night-time scrolling" />
+                      </Field>
+                      <Field label="Why are you joining the HEAL phase?">
+                        <textarea name="motivation" rows={3} className="input resize-none" placeholder="Your motivation" />
+                      </Field>
+                    </FormSection>
                   </div>
-                  <Field label="How consistent were you?">
-                    <select name="consistency" className="input" defaultValue="">
-                      <option value="" disabled>Select…</option>
-                      <option>Daily</option>
-                      <option>Most days</option>
-                      <option>Occasionally</option>
-                    </select>
-                  </Field>
-                </FormSection>
 
-                <FormSection n="5" title="Progress Tracking & Evidence">
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <Field label="Current daily screen time (now)">
-                      <select name="currentScreenTime" className="input" defaultValue="">
-                        <option value="" disabled>Select…</option>
-                        {SCREEN_TIMES.map((t) => <option key={t}>{t}</option>)}
-                      </select>
-                    </Field>
-                    <Field label="Upload a progress screenshot">
-                      <input name="progressScreenshot" type="file" accept="image/*" className="file-input" />
-                    </Field>
+                  {/* Step 2 — Your Baseline */}
+                  <div data-step={1} className={step === 1 ? "space-y-10" : "hidden"}>
+                    <FormSection n="3" title="Baseline Digital Record">
+                      <div className="grid gap-5 sm:grid-cols-2">
+                        <Field label="Average daily screen time (before)" required>
+                          <select required name="baselineScreenTime" className="input" defaultValue="">
+                            <option value="" disabled>Select…</option>
+                            {SCREEN_TIMES.map((t) => <option key={t}>{t}</option>)}
+                          </select>
+                        </Field>
+                        <Field label="Upload a screenshot of your baseline screen time" required>
+                          <input required name="baselineScreenshot" type="file" accept="image/*" className="file-input" />
+                        </Field>
+                      </div>
+                    </FormSection>
+
+                    <FormSection n="4" title="HEAL Actions Taken">
+                      <p className="text-sm font-semibold text-ink">
+                        Which HEAL practices did you actively use?
+                      </p>
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        {HEAL_PRACTICES.map((p) => (
+                          <label key={p} className="flex items-start gap-3 rounded-xl border border-purple-100 p-3 text-sm text-body">
+                            <input type="checkbox" name="practices" value={p} className="mt-0.5 h-4 w-4 accent-[#7BC950]" />
+                            <span>{p}</span>
+                          </label>
+                        ))}
+                      </div>
+                      <Field label="How consistent were you?">
+                        <select name="consistency" className="input" defaultValue="">
+                          <option value="" disabled>Select…</option>
+                          <option>Daily</option>
+                          <option>Most days</option>
+                          <option>Occasionally</option>
+                        </select>
+                      </Field>
+                    </FormSection>
                   </div>
-                </FormSection>
 
-                <FormSection n="6" title="Reflection & Self-Control">
-                  <Field label="What was hardest, and what helped?">
-                    <textarea name="reflection" rows={3} className="input resize-none" placeholder="Reflect honestly on your struggles and strategies." />
-                  </Field>
-                </FormSection>
+                  {/* Step 3 — Progress & Reflection */}
+                  <div data-step={2} className={step === 2 ? "space-y-10" : "hidden"}>
+                    <FormSection n="5" title="Progress Tracking & Evidence">
+                      <div className="grid gap-5 sm:grid-cols-2">
+                        <Field label="Current daily screen time (now)">
+                          <select name="currentScreenTime" className="input" defaultValue="">
+                            <option value="" disabled>Select…</option>
+                            {SCREEN_TIMES.map((t) => <option key={t}>{t}</option>)}
+                          </select>
+                        </Field>
+                        <Field label="Upload a progress screenshot">
+                          <input name="progressScreenshot" type="file" accept="image/*" className="file-input" />
+                        </Field>
+                      </div>
+                    </FormSection>
 
-                <FormSection n="7" title="Optional Supporting Evidence">
-                  <Field label="Any other evidence you'd like to share (optional)">
-                    <input name="otherEvidence" type="file" accept="image/*" className="file-input" />
-                  </Field>
-                  <div className="space-y-3 pt-2">
-                    {[
-                      "I'm 18 years or older.",
-                      "The evidence I provide is authentic and my own.",
-                      "I agree to the challenge's data & consent policy.",
-                    ].map((c) => (
-                      <label key={c} className="flex items-start gap-3 text-sm text-body">
-                        <input required type="checkbox" className="mt-1 h-4 w-4 accent-[#7BC950]" />
-                        <span>{c}</span>
-                      </label>
-                    ))}
+                    <FormSection n="6" title="Reflection & Self-Control">
+                      <Field label="What was hardest, and what helped?">
+                        <textarea name="reflection" rows={3} className="input resize-none" placeholder="Reflect honestly on your struggles and strategies." />
+                      </Field>
+                    </FormSection>
                   </div>
-                </FormSection>
 
-                {error && (
-                  <p className="text-sm font-semibold text-red-500">
-                    Something went wrong submitting your entry. Please try again.
-                  </p>
-                )}
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="btn-primary w-full disabled:opacity-60"
-                >
-                  {submitting ? "Submitting…" : "Submit & Begin"}{" "}
-                  <Arrow className="h-4 w-4" />
-                </button>
-              </form>
+                  {/* Step 4 — Evidence & Consent */}
+                  <div data-step={3} className={step === 3 ? "space-y-10" : "hidden"}>
+                    <FormSection n="7" title="Supporting Evidence & Consent">
+                      <Field label="Any other evidence you'd like to share (optional)">
+                        <input name="otherEvidence" type="file" accept="image/*" className="file-input" />
+                      </Field>
+                      <div className="space-y-3 pt-2">
+                        {[
+                          "I'm 18 years or older.",
+                          "The evidence I provide is authentic and my own.",
+                          "I agree to the challenge's data & consent policy.",
+                        ].map((c) => (
+                          <label key={c} className="flex items-start gap-3 text-sm text-body">
+                            <input required type="checkbox" className="mt-1 h-4 w-4 accent-[#7BC950]" />
+                            <span>{c}</span>
+                          </label>
+                        ))}
+                      </div>
+                    </FormSection>
+
+                    {error && (
+                      <p className="text-sm font-semibold text-red-500">
+                        Something went wrong submitting your entry. Please try again.
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Step navigation */}
+                  <div className="mt-10 flex items-center justify-between gap-4">
+                    <button
+                      type="button"
+                      onClick={() => goTo(Math.max(step - 1, 0))}
+                      disabled={step === 0}
+                      className="btn-outline disabled:invisible"
+                    >
+                      <Arrow className="h-4 w-4 rotate-180" /> Back
+                    </button>
+
+                    {step < lastStep ? (
+                      <button type="button" onClick={nextStep} className="btn-primary">
+                        Continue <Arrow className="h-4 w-4" />
+                      </button>
+                    ) : (
+                      <button
+                        type="submit"
+                        disabled={submitting}
+                        className="btn-primary disabled:opacity-60"
+                      >
+                        {submitting ? "Submitting…" : "Submit & Begin"}{" "}
+                        <Arrow className="h-4 w-4" />
+                      </button>
+                    )}
+                  </div>
+                </form>
+              </>
             )}
           </div>
         </Reveal>
