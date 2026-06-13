@@ -75,7 +75,7 @@ export default function Home() {
           <Reveal className="h-full">
             <img
               src={IMG.home.trioLeft}
-              alt="Children supported by REHVAMP"
+              alt="A group of children supported by REHVAMP"
               className="h-full min-h-[320px] w-full rounded-3xl object-cover object-top shadow-soft"
             />
           </Reveal>
@@ -121,7 +121,7 @@ export default function Home() {
           <Reveal delay={0.2} className="h-full">
             <img
               src={IMG.home.trioRight}
-              alt="A group of children"
+              alt="A teenager with younger children"
               className="h-full min-h-[320px] w-full rounded-3xl object-cover object-top shadow-soft"
             />
           </Reveal>

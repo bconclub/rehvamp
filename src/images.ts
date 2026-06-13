@@ -9,8 +9,8 @@ export const IMG = {
   },
   home: {
     hero: "/images/home/hero-v1.webp", // Hero Image 1 V1 (compressed from PNG)
-    trioLeft: "/images/home/trio-left.webp", // live home 2nd-section left photo
-    trioRight: "/images/home/trio-right.webp", // live home 2nd-section right photo
+    trioLeft: "/images/home/trio-right.webp", // swapped: group-of-children photo on the left
+    trioRight: "/images/home/trio-left.webp", // swapped: teen-with-children photo on the right
     heroChildren: "/images/home/people-1.webp", // children learning with a mentor
     childBoard: "/images/home/child-board.webp", // child holding a board (cutout)
     classroom: "/images/home/event-1.webp", // teacher + circle of kids
