@@ -9,7 +9,7 @@ export const IMG = {
   },
   home: {
     hero: "/images/home/hero-v1.webp", // Hero Image 1 V1 (compressed from PNG)
-    trioLeft: "/images/home/trio-right.webp", // swapped: group-of-children photo on the left
+    trioLeft: "/images/home/trio-ishita.webp", // founder Ishita reading in a library
     trioRight: "/images/home/trio-left.webp", // swapped: teen-with-children photo on the right
     heroChildren: "/images/home/people-1.webp", // children learning with a mentor
     childBoard: "/images/home/child-board.webp", // child holding a board (cutout)

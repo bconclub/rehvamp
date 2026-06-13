@@ -75,7 +75,7 @@ export default function Home() {
           <Reveal className="h-full">
             <img
               src={IMG.home.trioLeft}
-              alt="A group of children supported by REHVAMP"
+              alt="Founder Ishita Gupta studying in a library"
               className="h-full min-h-[320px] w-full rounded-3xl object-cover object-top shadow-soft"
             />
           </Reveal>
