@@ -49,12 +49,34 @@ function seed(): ContentState {
   };
 }
 
+// The code seed (site.ts) is the source of truth for built-in content, so new
+// or edited posts/stories ship with every deploy. Without this, a returning
+// visitor's stale localStorage snapshot would hide content added after their
+// first visit. Any admin-created extras (slugs/stories not in the seed) are
+// preserved on top.
+function reconcile(stored: ContentState): ContentState {
+  const fresh = seed();
+  const seedSlugs = new Set(fresh.posts.map((p) => p.slug));
+  const extraPosts = (stored.posts ?? []).filter((p) => !seedSlugs.has(p.slug));
+
+  const storyKey = (s: { title: string; name: string }) => `${s.title}|${s.name}`;
+  const seedStoryKeys = new Set(fresh.stories.map(storyKey));
+  const extraStories = (stored.stories ?? []).filter(
+    (s) => !seedStoryKeys.has(storyKey(s))
+  );
+
+  return {
+    posts: [...extraPosts, ...fresh.posts],
+    stories: [...fresh.stories, ...extraStories],
+  };
+}
+
 function load(): ContentState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (raw) {
       const parsed = JSON.parse(raw) as ContentState;
-      if (parsed?.posts && parsed?.stories) return parsed;
+      if (parsed?.posts && parsed?.stories) return reconcile(parsed);
     }
   } catch {
     /* ignore */
