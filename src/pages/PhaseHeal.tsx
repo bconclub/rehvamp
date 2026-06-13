@@ -252,7 +252,7 @@ export default function PhaseHeal() {
                 </div>
 
                 <form ref={formRef} onSubmit={handleSubmit} className="mt-8">
-                  {/* Step 1 — About You */}
+                  {/* Step 1, About You */}
                   <div data-step={0} className={step === 0 ? "space-y-10" : "hidden"}>
                     <FormSection n="1" title="Participant Information">
                       <div className="grid gap-5 sm:grid-cols-2">
@@ -281,7 +281,7 @@ export default function PhaseHeal() {
                     </FormSection>
                   </div>
 
-                  {/* Step 2 — Your Baseline */}
+                  {/* Step 2, Your Baseline */}
                   <div data-step={1} className={step === 1 ? "space-y-10" : "hidden"}>
                     <FormSection n="3" title="Baseline Digital Record">
                       <div className="grid gap-5 sm:grid-cols-2">
@@ -320,7 +320,7 @@ export default function PhaseHeal() {
                     </FormSection>
                   </div>
 
-                  {/* Step 3 — Progress & Reflection */}
+                  {/* Step 3, Progress & Reflection */}
                   <div data-step={2} className={step === 2 ? "space-y-10" : "hidden"}>
                     <FormSection n="5" title="Progress Tracking & Evidence">
                       <div className="grid gap-5 sm:grid-cols-2">
@@ -343,7 +343,7 @@ export default function PhaseHeal() {
                     </FormSection>
                   </div>
 
-                  {/* Step 4 — Evidence & Consent */}
+                  {/* Step 4, Evidence & Consent */}
                   <div data-step={3} className={step === 3 ? "space-y-10" : "hidden"}>
                     <FormSection n="7" title="Supporting Evidence & Consent">
                       <Field label="Any other evidence you'd like to share (optional)">

@@ -8,7 +8,7 @@ export const IMG = {
     icon: "/assets/icon.webp",
   },
   home: {
-    hero: "/images/home/hero.webp", // the real WordPress hero (child with painted hands)
+    hero: "/images/home/hero-v1.webp", // Hero Image 1 V1 (compressed from PNG)
     trioLeft: "/images/home/trio-left.webp", // live home 2nd-section left photo
     trioRight: "/images/home/trio-right.webp", // live home 2nd-section right photo
     heroChildren: "/images/home/people-1.webp", // children learning with a mentor
