@@ -96,7 +96,7 @@ export default function About() {
               <img
                 src={IMG.founder.about}
                 alt="Ishita Gupta, Founder"
-                className="h-[460px] w-full object-cover"
+                className="h-[460px] w-full object-cover md:h-[560px]"
               />
             </div>
           </Reveal>
