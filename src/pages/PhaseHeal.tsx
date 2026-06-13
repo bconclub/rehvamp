@@ -3,6 +3,7 @@ import PageTransition from "../components/PageTransition";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 import { Arrow, Check, Shield } from "../components/Icons";
+import { submitToSheet, fileToBase64 } from "../lib/submitToSheet";
 
 const HELPS_YOU = [
   "Break unhealthy digital habits",
@@ -44,6 +45,54 @@ const RULES = [
 
 export default function PhaseHeal() {
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const fd = new FormData(form);
+
+    // Optional screenshot uploads → base64 (saved to Drive by Apps Script).
+    const fileField = async (key: string) => {
+      const f = fd.get(key);
+      return f instanceof File && f.size > 0 ? await fileToBase64(f) : "";
+    };
+
+    setSubmitting(true);
+    setError(false);
+    try {
+      const [baselineScreenshot, progressScreenshot, otherEvidence] =
+        await Promise.all([
+          fileField("baselineScreenshot"),
+          fileField("progressScreenshot"),
+          fileField("otherEvidence"),
+        ]);
+
+      await submitToSheet("challenge-heal", {
+        fullName: fd.get("fullName"),
+        email: fd.get("email"),
+        ageRange: fd.get("ageRange"),
+        city: fd.get("city"),
+        focus: fd.get("focus"),
+        motivation: fd.get("motivation"),
+        baselineScreenTime: fd.get("baselineScreenTime"),
+        practices: fd.getAll("practices"),
+        consistency: fd.get("consistency"),
+        currentScreenTime: fd.get("currentScreenTime"),
+        reflection: fd.get("reflection"),
+        baselineScreenshot,
+        progressScreenshot,
+        otherEvidence,
+      });
+      setSent(true);
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } catch {
+      setError(true);
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   return (
     <PageTransition>
@@ -126,50 +175,43 @@ export default function PhaseHeal() {
                 </p>
               </div>
             ) : (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSent(true);
-                  window.scrollTo({ top: 0, behavior: "smooth" });
-                }}
-                className="mt-8 space-y-10"
-              >
+              <form onSubmit={handleSubmit} className="mt-8 space-y-10">
                 <FormSection n="1" title="Participant Information">
                   <div className="grid gap-5 sm:grid-cols-2">
                     <Field label="Full Name" required>
-                      <input required className="input" placeholder="Your name" />
+                      <input required name="fullName" className="input" placeholder="Your name" />
                     </Field>
                     <Field label="Email Address" required>
-                      <input required type="email" className="input" placeholder="you@email.com" />
+                      <input required name="email" type="email" className="input" placeholder="you@email.com" />
                     </Field>
                     <Field label="Age Range (Optional)">
-                      <input className="input" placeholder="e.g. 25-34" />
+                      <input name="ageRange" className="input" placeholder="e.g. 25-34" />
                     </Field>
                     <Field label="City / Location (Optional)">
-                      <input className="input" placeholder="e.g. London, UK" />
+                      <input name="city" className="input" placeholder="e.g. London, UK" />
                     </Field>
                   </div>
                 </FormSection>
 
                 <FormSection n="2" title="Intention & Motivation">
                   <Field label="What's your main digital-habit focus?" required>
-                    <input required className="input" placeholder="e.g. less night-time scrolling" />
+                    <input required name="focus" className="input" placeholder="e.g. less night-time scrolling" />
                   </Field>
                   <Field label="Why are you joining the HEAL phase?">
-                    <textarea rows={3} className="input resize-none" placeholder="Your motivation" />
+                    <textarea name="motivation" rows={3} className="input resize-none" placeholder="Your motivation" />
                   </Field>
                 </FormSection>
 
                 <FormSection n="3" title="Baseline Digital Record">
                   <div className="grid gap-5 sm:grid-cols-2">
                     <Field label="Average daily screen time (before)" required>
-                      <select required className="input" defaultValue="">
+                      <select required name="baselineScreenTime" className="input" defaultValue="">
                         <option value="" disabled>Select…</option>
                         {SCREEN_TIMES.map((t) => <option key={t}>{t}</option>)}
                       </select>
                     </Field>
                     <Field label="Upload a screenshot of your baseline screen time" required>
-                      <input required type="file" accept="image/*" className="file-input" />
+                      <input required name="baselineScreenshot" type="file" accept="image/*" className="file-input" />
                     </Field>
                   </div>
                 </FormSection>
@@ -181,13 +223,13 @@ export default function PhaseHeal() {
                   <div className="grid gap-3 sm:grid-cols-2">
                     {HEAL_PRACTICES.map((p) => (
                       <label key={p} className="flex items-start gap-3 rounded-xl border border-purple-100 p-3 text-sm text-body">
-                        <input type="checkbox" className="mt-0.5 h-4 w-4 accent-[#7BC950]" />
+                        <input type="checkbox" name="practices" value={p} className="mt-0.5 h-4 w-4 accent-[#7BC950]" />
                         <span>{p}</span>
                       </label>
                     ))}
                   </div>
                   <Field label="How consistent were you?">
-                    <select className="input" defaultValue="">
+                    <select name="consistency" className="input" defaultValue="">
                       <option value="" disabled>Select…</option>
                       <option>Daily</option>
                       <option>Most days</option>
@@ -199,26 +241,26 @@ export default function PhaseHeal() {
                 <FormSection n="5" title="Progress Tracking & Evidence">
                   <div className="grid gap-5 sm:grid-cols-2">
                     <Field label="Current daily screen time (now)">
-                      <select className="input" defaultValue="">
+                      <select name="currentScreenTime" className="input" defaultValue="">
                         <option value="" disabled>Select…</option>
                         {SCREEN_TIMES.map((t) => <option key={t}>{t}</option>)}
                       </select>
                     </Field>
                     <Field label="Upload a progress screenshot">
-                      <input type="file" accept="image/*" className="file-input" />
+                      <input name="progressScreenshot" type="file" accept="image/*" className="file-input" />
                     </Field>
                   </div>
                 </FormSection>
 
                 <FormSection n="6" title="Reflection & Self-Control">
                   <Field label="What was hardest, and what helped?">
-                    <textarea rows={3} className="input resize-none" placeholder="Reflect honestly on your struggles and strategies." />
+                    <textarea name="reflection" rows={3} className="input resize-none" placeholder="Reflect honestly on your struggles and strategies." />
                   </Field>
                 </FormSection>
 
                 <FormSection n="7" title="Optional Supporting Evidence">
                   <Field label="Any other evidence you'd like to share (optional)">
-                    <input type="file" accept="image/*" className="file-input" />
+                    <input name="otherEvidence" type="file" accept="image/*" className="file-input" />
                   </Field>
                   <div className="space-y-3 pt-2">
                     {[
@@ -234,8 +276,18 @@ export default function PhaseHeal() {
                   </div>
                 </FormSection>
 
-                <button type="submit" className="btn-primary w-full">
-                  Submit &amp; Begin <Arrow className="h-4 w-4" />
+                {error && (
+                  <p className="text-sm font-semibold text-red-500">
+                    Something went wrong submitting your entry. Please try again.
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="btn-primary w-full disabled:opacity-60"
+                >
+                  {submitting ? "Submitting…" : "Submit & Begin"}{" "}
+                  <Arrow className="h-4 w-4" />
                 </button>
               </form>
             )}

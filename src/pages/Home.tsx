@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import PageTransition from "../components/PageTransition";
 import Reveal from "../components/Reveal";
 import { Arrow, ICONS } from "../components/Icons";
+import NewsletterForm from "../components/NewsletterForm";
 import { FOCUS_AREAS } from "../site";
 import { useContent } from "../store";
 import { IMG } from "../images";
@@ -369,19 +370,7 @@ export default function Home() {
                   your inbox.
                 </p>
               </div>
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                className="grid gap-3 sm:grid-cols-2"
-              >
-                <input className="input border-transparent" placeholder="First name" />
-                <input className="input border-transparent" placeholder="Last name" />
-                <input
-                  className="input border-transparent sm:col-span-2"
-                  type="email"
-                  placeholder="Email address"
-                />
-                <button className="btn-green sm:col-span-2">Sign Up</button>
-              </form>
+              <NewsletterForm variant="full" source="Home" />
             </div>
           </div>
         </Reveal>

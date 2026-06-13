@@ -1,6 +1,7 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import PageTransition from "../components/PageTransition";
 import Reveal from "../components/Reveal";
+import NewsletterForm from "../components/NewsletterForm";
 import { useContent } from "../store";
 import { Arrow } from "../components/Icons";
 import type { BodyBlock } from "../site";
@@ -173,17 +174,7 @@ export default function BlogPost() {
               <p className="mt-2 text-sm text-white/70">
                 Get our latest stories straight to your inbox.
               </p>
-              <form
-                onSubmit={(e) => e.preventDefault()}
-                className="mt-4 flex flex-col gap-2"
-              >
-                <input
-                  type="email"
-                  placeholder="you@email.com"
-                  className="rounded-xl bg-white/15 px-4 py-3 text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-green"
-                />
-                <button className="btn-green w-full">Subscribe</button>
-              </form>
+              <NewsletterForm variant="compact" source={`Blog: ${post.slug}`} />
             </div>
           </div>
         </aside>

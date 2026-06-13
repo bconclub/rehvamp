@@ -4,6 +4,7 @@ import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 import { SITE } from "../site";
 import { Mail, Phone, Pin, Arrow } from "../components/Icons";
+import { submitToSheet } from "../lib/submitToSheet";
 
 const INQUIRY_TYPES = [
   "General Enquiry",
@@ -16,6 +17,28 @@ const INQUIRY_TYPES = [
 
 export default function Contact() {
   const [sent, setSent] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState(false);
+
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+    setSubmitting(true);
+    setError(false);
+    try {
+      await submitToSheet("contact", {
+        name: fd.get("name"),
+        email: fd.get("email"),
+        enquiryType: fd.get("enquiryType"),
+        message: fd.get("message"),
+      });
+      setSent(true);
+    } catch {
+      setError(true);
+    } finally {
+      setSubmitting(false);
+    }
+  }
 
   return (
     <PageTransition>
@@ -87,16 +110,11 @@ export default function Contact() {
                 </p>
               </div>
             ) : (
-              <form
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  setSent(true);
-                }}
-                className="space-y-5"
-              >
+              <form onSubmit={handleSubmit} className="space-y-5">
                 <Field label="Name">
                   <input
                     required
+                    name="name"
                     type="text"
                     className="input"
                     placeholder="Your name"
@@ -105,6 +123,7 @@ export default function Contact() {
                 <Field label="Email">
                   <input
                     required
+                    name="email"
                     type="email"
                     className="input"
                     placeholder="you@email.com"
@@ -112,7 +131,12 @@ export default function Contact() {
                 </Field>
                 <Field label="Type of Enquiry">
                   <div className="relative">
-                    <select required defaultValue="" className="input w-full appearance-none pr-10 text-body">
+                    <select
+                      required
+                      name="enquiryType"
+                      defaultValue=""
+                      className="input w-full appearance-none pr-10 text-body"
+                    >
                       <option value="" disabled className="text-body/50">
                         Select an option...
                       </option>
@@ -132,13 +156,24 @@ export default function Contact() {
                 <Field label="Message">
                   <textarea
                     required
+                    name="message"
                     rows={5}
                     className="input resize-none"
                     placeholder="How can we help?"
                   />
                 </Field>
-                <button type="submit" className="btn-primary w-full">
-                  Send Message <Arrow className="h-4 w-4" />
+                {error && (
+                  <p className="text-sm font-semibold text-red-500">
+                    Something went wrong. Please try again or email us directly.
+                  </p>
+                )}
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="btn-primary w-full disabled:opacity-60"
+                >
+                  {submitting ? "Sending…" : "Send Message"}{" "}
+                  <Arrow className="h-4 w-4" />
                 </button>
               </form>
             )}
