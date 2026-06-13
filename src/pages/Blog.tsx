@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PageTransition from "../components/PageTransition";
+import Seo from "../components/Seo";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 import { useContent } from "../store";
@@ -12,6 +13,10 @@ export default function Blog() {
   if (!featured) {
     return (
       <PageTransition>
+        <Seo
+          title="Blog"
+          description="Stories, updates and insights from REHVAMP Foundation on healing, growth, advocacy and digital well-being."
+        />
         <PageHero eyebrow="Blog" title="Stories of change" />
         <section className="container-x py-20 text-center text-body">
           No posts yet, check back soon.

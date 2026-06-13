@@ -1,4 +1,5 @@
 import PageTransition from "../components/PageTransition";
+import Seo from "../components/Seo";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 
@@ -186,6 +187,14 @@ export default function Legal({ kind }: { kind: "privacy" | "terms" }) {
   const doc = kind === "privacy" ? PRIVACY : TERMS;
   return (
     <PageTransition>
+      <Seo
+        title={doc.title}
+        description={
+          kind === "privacy"
+            ? "Read the REHVAMP Foundation privacy policy: how we collect, use and protect your personal information."
+            : "Read the REHVAMP Foundation terms and conditions for using our website and services."
+        }
+      />
       <PageHero title={doc.title} tone="ink" />
       <section className="container-x py-14 md:py-20">
         <div className="mx-auto max-w-3xl">

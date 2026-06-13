@@ -1,5 +1,6 @@
 import { useState, type ReactNode } from "react";
 import PageTransition from "../components/PageTransition";
+import Seo from "../components/Seo";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 import { SITE } from "../site";
@@ -42,6 +43,10 @@ export default function Contact() {
 
   return (
     <PageTransition>
+      <Seo
+        title="Contact Us"
+        description="Get in touch with REHVAMP Foundation for volunteering, partnerships, media or general enquiries. We'd love to hear from you."
+      />
       <PageHero
         title="Contact Us"
         subtitle="Let's heal, grow and inspire together. Questions, partnerships or just a hello, we'd love to hear from you."

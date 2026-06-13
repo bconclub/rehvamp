@@ -1,5 +1,6 @@
 import { useRef, useState, type ReactNode } from "react";
 import PageTransition from "../components/PageTransition";
+import Seo from "../components/Seo";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 import { Arrow, Check, Shield } from "../components/Icons";
@@ -130,6 +131,10 @@ export default function PhaseHeal() {
 
   return (
     <PageTransition>
+      <Seo
+        title="Phase I: Heal"
+        description="Phase I: Heal of the REHVAMP Digital Well-Being Challenge. Register, track your screen time and build mindful digital habits."
+      />
       <PageHero
         eyebrow="Digital Well-Being Challenge"
         title="Phase I: Heal"

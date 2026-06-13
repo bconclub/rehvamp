@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PageTransition from "../components/PageTransition";
+import Seo from "../components/Seo";
 import Reveal from "../components/Reveal";
 import { Arrow, Shield, Check } from "../components/Icons";
 import { IMG } from "../images";
@@ -66,6 +67,10 @@ const STATS = [
 export default function EmergencyExitLog() {
   return (
     <PageTransition>
+      <Seo
+        title="Emergency Exit Activity Log"
+        description="A log of REHVAMP Foundation's Emergency Exit Guidance activity, updates and regional travel situation reports."
+      />
       {/* Hero */}
       <section className="relative min-h-[420px] overflow-hidden">
         <img

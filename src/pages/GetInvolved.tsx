@@ -1,4 +1,5 @@
 import PageTransition from "../components/PageTransition";
+import Seo from "../components/Seo";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 import { Arrow, Clock, Heart, Handshake, Share } from "../components/Icons";
@@ -58,6 +59,10 @@ const WAYS: {
 export default function GetInvolved() {
   return (
     <PageTransition>
+      <Seo
+        title="Get Involved"
+        description="Volunteer, partner, fundraise or donate. There are many ways to support REHVAMP Foundation and help children and young people heal, grow and inspire."
+      />
       <PageHero
         title="Get Involved"
         subtitle="There are many ways to be part of the change. Find the one that fits you."

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import PageTransition from "../components/PageTransition";
+import Seo from "../components/Seo";
 import Reveal from "../components/Reveal";
 import { Arrow, Heart, Leaf, Shield, Book } from "../components/Icons";
 import { IMG } from "../images";
@@ -27,6 +28,10 @@ const HELP = [
 export default function SaveGaza() {
   return (
     <PageTransition>
+      <Seo
+        title="Save Gaza's Children"
+        description="Stand with Gaza's children. Support REHVAMP Foundation's humanitarian efforts to bring relief, hope and dignity to children affected by conflict."
+      />
       {/* Hero */}
       <section className="relative overflow-hidden bg-purple text-white">
         <img

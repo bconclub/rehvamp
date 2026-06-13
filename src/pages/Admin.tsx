@@ -1,6 +1,7 @@
 import { useState, type ReactNode } from "react";
 import { Link } from "react-router-dom";
 import PageTransition from "../components/PageTransition";
+import Seo from "../components/Seo";
 import { useContent, slugify, type Post, type Story } from "../store";
 import { IMG } from "../images";
 import { Arrow } from "../components/Icons";
@@ -22,6 +23,7 @@ export default function Admin() {
 
   return (
     <PageTransition>
+      <Seo title="Admin" description="REHVAMP Foundation content manager." noindex />
       <section className="bg-purple py-10 text-white">
         <div className="container-x flex flex-wrap items-center justify-between gap-4">
           <div>
@@ -59,6 +61,7 @@ function Gate({ onPass }: { onPass: () => void }) {
   const [err, setErr] = useState(false);
   return (
     <PageTransition>
+      <Seo title="Admin" description="REHVAMP Foundation content manager." noindex />
       <section className="container-x flex min-h-[70vh] items-center justify-center py-20">
         <form
           onSubmit={(e) => {

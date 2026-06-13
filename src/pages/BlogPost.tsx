@@ -1,5 +1,6 @@
 import { useParams, Link, Navigate } from "react-router-dom";
 import PageTransition from "../components/PageTransition";
+import Seo from "../components/Seo";
 import Reveal from "../components/Reveal";
 import NewsletterForm from "../components/NewsletterForm";
 import { useContent } from "../store";
@@ -61,6 +62,7 @@ export default function BlogPost() {
 
   return (
     <PageTransition>
+      <Seo title={post.title} description={post.excerpt} image={post.image} />
       {/* Header */}
       <section className="bg-purple-50">
         <div className="container-x py-12 md:py-16">

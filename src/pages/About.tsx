@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PageTransition from "../components/PageTransition";
+import Seo from "../components/Seo";
 import PageHero from "../components/PageHero";
 import Reveal from "../components/Reveal";
 import { Arrow } from "../components/Icons";
@@ -31,6 +32,10 @@ const FOCUS = [
 export default function About() {
   return (
     <PageTransition>
+      <Seo
+        title="About Us"
+        description="Meet REHVAMP Foundation and founder Ishita Gupta, and the focus areas through which we help children and young people heal, grow and inspire."
+      />
       <PageHero eyebrow="About Us" title="About Us" tone="ink" />
 
       {/* Intro */}

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import PageTransition from "../components/PageTransition";
+import Seo from "../components/Seo";
 import Reveal from "../components/Reveal";
 import { Phone, Check, Shield, Pin, Arrow, Heart } from "../components/Icons";
 import { SITE } from "../site";
@@ -67,6 +68,10 @@ export default function EmergencyExit() {
   const tel = `tel:${SITE.phoneMobile.replace(/\s/g, "")}`;
   return (
     <PageTransition>
+      <Seo
+        title="Emergency Exit Guidance"
+        description="Humanitarian coordination support during regional airspace disruptions. REHVAMP Foundation helps individuals and families find safe, lawful exit pathways."
+      />
       {/* Hero */}
       <section className="bg-purple text-white">
         <div className="container-x py-16 md:py-20">

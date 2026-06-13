@@ -5,6 +5,7 @@ import Reveal from "../components/Reveal";
 import { Arrow, ICONS } from "../components/Icons";
 import NewsletterForm from "../components/NewsletterForm";
 import VimeoPlayer from "../components/VimeoPlayer";
+import Seo from "../components/Seo";
 import { FOCUS_AREAS } from "../site";
 import { useContent } from "../store";
 import { IMG } from "../images";
@@ -37,6 +38,11 @@ export default function Home() {
   const { posts, stories } = useContent();
   return (
     <PageTransition>
+      <Seo
+        bareTitle
+        title="REHVAMP Foundation · Heal, Grow, Inspire"
+        description="REHVAMP Foundation creates safe, supportive and empowering environments where children and young people can heal, grow and inspire."
+      />
       {/* 1 - HERO (full-bleed image) */}
       <section className="relative w-full overflow-hidden bg-ink">
         <motion.img

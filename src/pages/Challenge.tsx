@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import PageTransition from "../components/PageTransition";
+import Seo from "../components/Seo";
 import Reveal from "../components/Reveal";
 import { Arrow, Check } from "../components/Icons";
 import { IMG } from "../images";
@@ -65,6 +66,10 @@ const GRAND = [
 export default function Challenge() {
   return (
     <PageTransition>
+      <Seo
+        title="Digital Well-Being Challenge"
+        description="Join the REHVAMP Digital Well-Being Challenge. Break unhealthy digital habits, cut screen time and reclaim your focus, sleep and peace of mind."
+      />
       {/* 1 - HERO (pale green, purple type) */}
       <section className="bg-green-100">
         <div className="container-x py-20 text-center md:py-28">
