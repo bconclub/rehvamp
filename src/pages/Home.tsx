@@ -7,6 +7,24 @@ import { FOCUS_AREAS } from "../site";
 import { useContent } from "../store";
 import { IMG } from "../images";
 
+const VIDEOS: { title: string; caption: string; id: string }[] = [
+  {
+    title: "Doom Scrolling & Mental Health",
+    caption: "How endless scrolling is affecting young minds — and what we can do.",
+    id: "",
+  },
+  {
+    title: "Tackling Bullying Together",
+    caption: "Real stories, real impact. How communities are standing up to bullying.",
+    id: "",
+  },
+  {
+    title: "Digital Well-Being for Young People",
+    caption: "Building healthier habits in a hyperconnected world.",
+    id: "",
+  },
+];
+
 const BE_THE_CHANGE = [
   {
     title: "Donate",
@@ -191,11 +209,53 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6 - TOGETHER, WE MAKE A DIFFERENCE */}
-      <section className="bg-purple-50 py-20 text-center md:py-28">
-        <Reveal>
-          <h2 className="display-lg text-ink">TOGETHER, WE MAKE A DIFFERENCE</h2>
-        </Reveal>
+      {/* 6 - TOGETHER, WE MAKE A DIFFERENCE — video section */}
+      <section className="bg-purple py-20 md:py-28">
+        <div className="container-x">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <p className="eyebrow justify-center text-green">Join Rehvamp</p>
+            <h2 className="mt-3 display-lg text-white">
+              Together, We Can Make a Difference
+            </h2>
+            <p className="mt-4 text-lg text-white/80">
+              Watch how Rehvamp is tackling doom scrolling, bullying and digital
+              well-being — and how you can be part of the change.
+            </p>
+          </Reveal>
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {VIDEOS.map((v, i) => (
+              <Reveal key={v.title} delay={i * 0.1}>
+                <div className="overflow-hidden rounded-3xl bg-white/10">
+                  {v.id ? (
+                    <iframe
+                      src={`https://www.youtube.com/embed/${v.id}`}
+                      title={v.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="aspect-video w-full"
+                    />
+                  ) : (
+                    <div className="flex aspect-video items-center justify-center bg-white/5">
+                      <p className="text-sm font-semibold text-white/30">Video coming soon</p>
+                    </div>
+                  )}
+                  <div className="p-5">
+                    <p className="font-display text-xl text-white">{v.title}</p>
+                    <p className="mt-1 text-sm text-white/65">{v.caption}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal className="mt-14 text-center">
+            <p className="mb-6 text-lg text-white/70">Ready to make a difference?</p>
+            <Link to="/challenge" className="btn-green">
+              Take the Challenge <Arrow className="h-4 w-4" />
+            </Link>
+          </Reveal>
+        </div>
       </section>
 
       {/* 7 - JOIN THE MOVEMENT (focus areas) */}
