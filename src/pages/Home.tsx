@@ -208,14 +208,14 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <Reveal className="mx-auto mt-12 max-w-3xl">
-            <div className="overflow-hidden rounded-3xl bg-white/10 shadow-card">
+          <Reveal className="mx-auto mt-12 w-full max-w-[340px]">
+            <div className="aspect-[9/16] overflow-hidden rounded-3xl bg-black shadow-card">
               <iframe
-                src={`https://player.vimeo.com/video/${VIMEO_ID}`}
+                src={`https://player.vimeo.com/video/${VIMEO_ID}?title=0&byline=0&portrait=0&badge=0&dnt=1`}
                 title="Together, We Can Make a Difference"
                 allow="autoplay; fullscreen; picture-in-picture"
                 allowFullScreen
-                className="aspect-video w-full"
+                className="h-full w-full"
               />
             </div>
           </Reveal>
