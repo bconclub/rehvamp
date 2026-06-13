@@ -1,5 +1,5 @@
 /**
- * Rehvamp Foundation — website form intake.
+ * Rehvamp Foundation, website form intake.
  *
  * Receives JSON posts from the website and appends a row to the matching
  * tab in this spreadsheet. Tabs and header rows are created automatically

@@ -4,13 +4,13 @@
 
 - About page rebuilt to match live one-to-one: removed Mission & Vision, replaced with Our Focus Areas (alternating purple/green cards), How We Work (pale-purple, image + copy), Join the Cause CTA.
 - Emergency Exit: updated status section from stale "March 2026 Overview" to current per-country GCC status (all 6 countries operational with individual detail cards + Rehvamp assessment + advisory).
-- Added new blog post: "Supporting Families Through Crisis" — full narrative of the Emergency Exit Guidance Initiative with 10 body paragraphs.
+- Added new blog post: "Supporting Families Through Crisis", full narrative of the Emergency Exit Guidance Initiative with 10 body paragraphs.
 - Emergency Exit page now links to the new blog post ("Read our full initiative report").
 
 ## 2026-06-11 · Phase 1, Legal, and home-trio one-to-one match
 
 - Home 2nd-section trio: pulled the live's exact side photos (trio-left / trio-right) and swapped them in.
-- Phase 1: Heal rebuilt to match the live page — "Welcome to Phase I: HEAL", "This phase helps you" / "What You'll Do", and the submission form's real sections (Participant Information, Intention & Motivation, Baseline Digital Record, HEAL Actions Taken, Progress Tracking & Evidence, Reflection & Self-Control, Optional Supporting Evidence) + Participant Rules. HEAL practices match the live checklist.
+- Phase 1: Heal rebuilt to match the live page, "Welcome to Phase I: HEAL", "This phase helps you" / "What You'll Do", and the submission form's real sections (Participant Information, Intention & Motivation, Baseline Digital Record, HEAL Actions Taken, Progress Tracking & Evidence, Reflection & Self-Control, Optional Supporting Evidence) + Participant Rules. HEAL practices match the live checklist.
 - Privacy Policy & Terms rebuilt with the full real legal text from the live site (10–11 sections each, subsections + lists), brand-styled.
 - User-facing: Phase 1, Privacy, Terms and the home trio now mirror the live site content.
 

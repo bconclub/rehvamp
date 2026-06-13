@@ -53,7 +53,7 @@ HEAL Challenge screenshot uploads are saved to a Drive folder named
    **Vercel → Project → Settings → Environment Variables**
    (`VITE_SHEET_ENDPOINT` = the `/exec` URL), then redeploy.
 
-That's it — submissions will start landing in the sheet.
+That's it, submissions will start landing in the sheet.
 
 ## Updating the script later
 

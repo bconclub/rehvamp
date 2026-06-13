@@ -13,7 +13,7 @@ export default {
 
         // Purple family (brand primary). NOTE: the `teal` family is a legacy
         // alias that points at these same purple values so existing class
-        // names keep working — prefer `purple-*` in new code.
+        // names keep working, prefer `purple-*` in new code.
         purple: {
           DEFAULT: "#5E2B97",
           50: "#EFE1FF", // pale purple section background
