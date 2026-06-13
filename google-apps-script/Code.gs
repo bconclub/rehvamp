@@ -12,9 +12,9 @@
  * below to match them exactly (the keys must stay the same).
  */
 var TABS = {
-  contact: 'Contact Enquiries',
-  newsletter: 'Newsletter Signups',
-  'challenge-heal': 'HEAL Challenge',
+  contact: 'Contact',
+  newsletter: 'Newsletter',
+  'challenge-heal': 'Challenge Phase 1',
 };
 
 // Header row for each tab, in column order.
