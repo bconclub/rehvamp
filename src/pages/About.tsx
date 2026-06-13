@@ -94,7 +94,7 @@ export default function About() {
           <Reveal delay={0.1}>
             <div className="overflow-hidden rounded-[2rem] shadow-soft">
               <img
-                src={IMG.founder.portrait}
+                src={IMG.founder.about}
                 alt="Ishita Gupta, Founder"
                 className="h-[460px] w-full object-cover"
               />

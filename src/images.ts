@@ -23,7 +23,8 @@ export const IMG = {
     circle3: "/images/home/circle-3.jpg",
   },
   founder: {
-    portrait: "/images/founder/ishita-founder-photo.jpg",
+    portrait: "/images/founder/ishita-founder-photo.jpg",  // Challenge page
+    about: "/images/founder/ishita-about-portrait.jpg",    // About page
     festival: "/images/founder/ishita-festival.jpg",
     certificate: "/images/founder/ishita-certificate.jpg",
   },
