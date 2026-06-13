@@ -219,7 +219,7 @@ export default function PhaseHeal() {
                       return (
                         <div key={label} className="flex flex-1 flex-col items-center">
                           <span
-                            className={`flex h-9 w-9 items-center justify-center rounded-full text-sm font-bold transition-colors ${
+                            className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold transition-colors ${
                               active
                                 ? "bg-purple text-white"
                                 : done
@@ -227,7 +227,7 @@ export default function PhaseHeal() {
                                 : "bg-purple-50 text-purple/50"
                             }`}
                           >
-                            {done ? <Check className="h-4 w-4" /> : i + 1}
+                            {done ? <Check className="h-3.5 w-3.5" /> : i + 1}
                           </span>
                           <span
                             className={`mt-2 hidden text-center text-xs font-semibold sm:block ${
@@ -240,7 +240,7 @@ export default function PhaseHeal() {
                       );
                     })}
                   </div>
-                  <div className="mt-4 h-1.5 w-full overflow-hidden rounded-full bg-purple-50">
+                  <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-purple-50">
                     <div
                       className="h-full rounded-full bg-green transition-all duration-300"
                       style={{ width: `${((step + 1) / FORM_STEPS.length) * 100}%` }}
