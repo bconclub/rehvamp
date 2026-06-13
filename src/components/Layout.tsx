@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import AnnouncementBar from "./AnnouncementBar";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import CookieConsent from "./CookieConsent";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
@@ -10,6 +11,7 @@ export default function Layout({ children }: { children: ReactNode }) {
       <Navbar />
       <div className="flex-1">{children}</div>
       <Footer />
+      <CookieConsent />
     </div>
   );
 }
