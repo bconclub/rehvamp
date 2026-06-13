@@ -18,9 +18,9 @@ export const IMG = {
     people3: "/images/home/people-3.webp",
     event2: "/images/home/event-2.webp",
     event3: "/images/home/event-3.webp",
-    circle1: "/images/home/circle-1.jpg",
-    circle2: "/images/home/circle-2.jpg",
-    circle3: "/images/home/circle-3.jpg",
+    circle1: "/images/home/face-1.webp", // children's faces cropped from event-1
+    circle2: "/images/home/face-2.webp",
+    circle3: "/images/home/face-3.webp",
   },
   founder: {
     portrait: "/images/founder/ishita-founder-photo.jpg",  // Challenge page

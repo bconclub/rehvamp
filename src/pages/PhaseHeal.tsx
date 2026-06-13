@@ -224,7 +224,7 @@ export default function PhaseHeal() {
                       return (
                         <div key={label} className="flex flex-1 flex-col items-center">
                           <span
-                            className={`flex h-7 w-7 items-center justify-center rounded-full text-xs font-bold transition-colors ${
+                            className={`flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-bold transition-colors ${
                               active
                                 ? "bg-purple text-white"
                                 : done
@@ -232,7 +232,7 @@ export default function PhaseHeal() {
                                 : "bg-purple-50 text-purple/50"
                             }`}
                           >
-                            {done ? <Check className="h-3.5 w-3.5" /> : i + 1}
+                            {done ? <Check className="h-3 w-3" /> : i + 1}
                           </span>
                           <span
                             className={`mt-2 hidden text-center text-xs font-semibold sm:block ${
