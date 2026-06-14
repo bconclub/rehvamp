@@ -13,6 +13,7 @@ export const IMG = {
     trioRight: "/images/home/trio-left.webp", // swapped: teen-with-children photo on the right
     heroChildren: "/images/home/people-1.webp", // children learning with a mentor
     childBoard: "/images/home/child-board.webp", // child holding a board (cutout)
+    safeSpacesPhoto: "/images/home/trio-ishita2.webp", // founder photo in the middle card
     classroom: "/images/home/event-1.webp", // teacher + circle of kids
     people2: "/images/home/people-2.webp",
     people3: "/images/home/people-3.webp",

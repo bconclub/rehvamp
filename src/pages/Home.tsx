@@ -81,18 +81,12 @@ export default function Home() {
           </Reveal>
 
           <Reveal delay={0.1} className="flex h-full flex-col gap-6">
-            {/* creating safe spaces card */}
-            <div className="relative flex-1 overflow-hidden rounded-3xl bg-purple p-7 shadow-card">
-              <p className="max-w-[60%] font-sans text-2xl font-bold leading-snug text-white">
-                creating <span className="text-green">safe spaces</span> for
-                children
-              </p>
-              <img
-                src={IMG.home.childBoard}
-                alt=""
-                className="pointer-events-none absolute bottom-0 right-2 h-48 w-auto object-contain"
-              />
-            </div>
+            {/* founder photo card */}
+            <img
+              src={IMG.home.safeSpacesPhoto}
+              alt="Founder Ishita Gupta"
+              className="min-h-[220px] w-full flex-1 rounded-3xl object-cover object-top shadow-card"
+            />
             {/* 15K stat card */}
             <div className="flex items-center justify-between rounded-3xl bg-green p-7 shadow-card">
               <div>
