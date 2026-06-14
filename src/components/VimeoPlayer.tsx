@@ -89,11 +89,11 @@ export default function VimeoPlayer({
         type="button"
         onClick={toggle}
         aria-label={playing ? "Pause video" : "Play video"}
-        className="group absolute inset-0 flex items-center justify-center"
+        className="group absolute inset-0"
       >
         {!playing && (
-          <span className="flex h-16 w-16 items-center justify-center rounded-full bg-green text-purple shadow-card transition-transform group-hover:scale-110">
-            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" className="ml-1">
+          <span className="absolute bottom-[24%] left-1/2 flex h-14 w-14 -translate-x-1/2 items-center justify-center rounded-full bg-green text-purple shadow-card transition-transform group-hover:scale-110">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" className="ml-1">
               <path d="M8 5v14l11-7z" />
             </svg>
           </span>
