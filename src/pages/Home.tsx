@@ -90,7 +90,7 @@ export default function Home() {
               <img
                 src={IMG.home.founderCutout}
                 alt=""
-                className="pointer-events-none absolute bottom-0 right-4 h-[88%] w-auto object-contain object-bottom sm:right-6"
+                className="pointer-events-none absolute bottom-0 right-6 h-[88%] w-auto object-contain object-bottom sm:right-8"
               />
             </div>
             {/* 15K stat card */}
