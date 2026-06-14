@@ -10,12 +10,15 @@ import { useEffect, useRef, useState } from "react";
 export default function VimeoPlayer({
   id,
   className = "",
+  poster,
 }: {
   id: string;
   className?: string;
+  poster?: string;
 }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [playing, setPlaying] = useState(false);
+  const [started, setStarted] = useState(false);
 
   const ORIGIN = "https://player.vimeo.com";
 
@@ -54,6 +57,7 @@ export default function VimeoPlayer({
   function toggle() {
     if (playing) post("pause");
     else post("play");
+    setStarted(true);
     setPlaying((p) => !p);
   }
 
@@ -72,6 +76,14 @@ export default function VimeoPlayer({
         onLoad={subscribe}
         className="pointer-events-none h-full w-full"
       />
+      {/* Custom cover image, shown until the video is first played */}
+      {poster && !started && (
+        <img
+          src={poster}
+          alt=""
+          className="pointer-events-none absolute inset-0 h-full w-full object-cover"
+        />
+      )}
       {/* Click layer + play button (covers the iframe) */}
       <button
         type="button"

@@ -14,6 +14,7 @@ export const IMG = {
     heroChildren: "/images/home/people-1.webp", // children learning with a mentor
     childBoard: "/images/home/child-board.webp", // child holding a board (cutout)
     founderCutout: "/images/home/founder-cutout.webp", // founder cut-out (PNG/alpha) for the safe-spaces card
+    doomScrollingCover: "/images/home/doom-scrolling-cover.webp", // cover/poster for the doom-scrolling video
     classroom: "/images/home/event-1.webp", // teacher + circle of kids
     people2: "/images/home/people-2.webp",
     people3: "/images/home/people-3.webp",

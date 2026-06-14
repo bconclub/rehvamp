@@ -218,6 +218,7 @@ export default function Home() {
           <Reveal className="mx-auto mt-12 w-full max-w-[340px]">
             <VimeoPlayer
               id={VIMEO_ID}
+              poster={IMG.home.doomScrollingCover}
               className="aspect-[9/16] rounded-3xl shadow-card"
             />
           </Reveal>
