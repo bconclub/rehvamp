@@ -202,8 +202,47 @@ export default function Home() {
       </section>
 
       {/* 6 - TOGETHER, WE MAKE A DIFFERENCE, video section */}
-      <section className="bg-purple py-20 md:py-28">
-        <div className="container-x">
+      <section className="relative overflow-hidden bg-purple py-20 md:py-28">
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 50% 58%, rgba(236, 211, 255, 0.54), rgba(164, 91, 230, 0.2) 24%, rgba(94, 43, 151, 0.08) 43%, transparent 66%), linear-gradient(90deg, rgba(26, 5, 64, 0.42), rgba(94, 43, 151, 0) 30%, rgba(94, 43, 151, 0) 70%, rgba(26, 5, 64, 0.42)), linear-gradient(180deg, rgba(47, 12, 100, 0.24), rgba(33, 6, 78, 0.44))",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0"
+          style={{
+            backgroundImage:
+              "radial-gradient(ellipse at center, transparent 45%, rgba(31, 6, 76, 0.28) 88%)",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-[52%] top-[58%] z-0 w-[1500px] max-w-[178vw] -translate-x-1/2 -translate-y-1/2 opacity-65 sm:max-w-[150vw] md:max-w-[116vw]"
+        >
+          <motion.img
+            src={IMG.logo.wingBg}
+            alt=""
+            className="w-full max-w-none object-contain"
+            initial={{ x: -24, y: 18, scale: 0.94, opacity: 0 }}
+            whileInView={{
+              x: [-24, 0, 8, 0],
+              y: [18, 0, -5, 0],
+              scale: [0.94, 1, 1.012, 1],
+              opacity: [0, 1, 1, 1],
+            }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{
+              duration: 3.8,
+              ease: [0.22, 1, 0.36, 1],
+              times: [0, 0.32, 0.68, 1],
+            }}
+          />
+        </div>
+        <div className="container-x relative z-10">
           <Reveal className="mx-auto max-w-2xl text-center">
             <p className="eyebrow justify-center text-green">Join Rehvamp</p>
             <h2 className="mt-3 display-lg text-white">
@@ -215,12 +254,16 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <Reveal className="mx-auto mt-12 w-full max-w-[340px]">
-            <VimeoPlayer
-              id={VIMEO_ID}
-              poster={IMG.home.doomScrollingCover}
-              className="aspect-[9/16] rounded-3xl shadow-card"
-            />
+          <Reveal className="mx-auto mt-10">
+            <div className="relative mx-auto flex min-h-[530px] w-full max-w-[860px] items-center justify-center overflow-visible md:min-h-[560px]">
+              <div className="relative z-10 w-full max-w-[340px] rounded-3xl bg-purple-100/20 p-1 shadow-[0_24px_70px_rgba(28,6,64,0.45),0_0_38px_rgba(184,100,255,0.55)] ring-2 ring-purple-200/55">
+                <VimeoPlayer
+                  id={VIMEO_ID}
+                  poster={IMG.home.doomScrollingCover}
+                  className="aspect-[9/16] rounded-[1.35rem] shadow-card"
+                />
+              </div>
+            </div>
           </Reveal>
 
           <Reveal className="mt-14 text-center">

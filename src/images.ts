@@ -6,6 +6,7 @@ export const IMG = {
     white: "/assets/logo-white.webp",
     dark: "/assets/logo-dark.png",
     icon: "/assets/icon.webp",
+    wingBg: "/assets/logo-wing-bg.svg",
   },
   home: {
     hero: "/images/home/hero-v1.webp", // Hero Image 1 V1 (compressed from PNG)
