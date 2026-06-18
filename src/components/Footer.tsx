@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { SITE } from "../site";
-import { Instagram, XLogo, Mail, Phone, Pin, Arrow } from "./Icons";
+import { XLogo, Mail, Phone, Pin, Arrow } from "./Icons";
 
 export default function Footer() {
   return (
@@ -38,15 +38,6 @@ export default function Footer() {
             {SITE.mission}
           </p>
           <div className="mt-6 flex gap-3">
-            <a
-              href={SITE.socials.instagram}
-              target="_blank"
-              rel="noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition-colors hover:border-teal hover:bg-teal hover:text-white"
-              aria-label="Instagram"
-            >
-              <Instagram className="h-5 w-5" />
-            </a>
             <a
               href={SITE.socials.x}
               target="_blank"

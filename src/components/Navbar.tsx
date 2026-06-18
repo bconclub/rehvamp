@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { NAV, SITE } from "../site";
-import { Arrow, Instagram, XLogo, Mail, Phone } from "./Icons";
+import { Arrow, XLogo, Mail, Phone } from "./Icons";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -270,15 +270,6 @@ function MobileDrawer({ open, onClose }: { open: boolean; onClose: () => void })
               </Link>
 
               <div className="mt-5 flex items-center gap-3">
-                <a
-                  href={SITE.socials.instagram}
-                  target="_blank"
-                  rel="noreferrer"
-                  aria-label="Instagram"
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 transition-colors hover:bg-green hover:text-purple"
-                >
-                  <Instagram className="h-5 w-5" />
-                </a>
                 <a
                   href={SITE.socials.x}
                   target="_blank"

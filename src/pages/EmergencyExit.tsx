@@ -58,7 +58,7 @@ const PRIORITY = [
 ];
 
 const STEPS = [
-  { n: "01", title: "Contact Us", text: "WhatsApp, form or Instagram. 24 hours." },
+  { n: "01", title: "Contact Us", text: "Phone, contact form or email. 24 hours." },
   { n: "02", title: "Share Details", text: "Location, nationality, group size, urgent needs." },
   { n: "03", title: "Receive Guidance", text: "Personalized route, visa help, updates." },
   { n: "04", title: "Move Safely", text: "Travel only when safe and lawful." },
@@ -98,7 +98,7 @@ export default function EmergencyExit() {
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
             <a href={tel} className="btn-green w-full sm:w-auto">
-              <Phone className="h-4 w-4" /> 24/7 WhatsApp
+              <Phone className="h-4 w-4" /> Call 24/7
             </a>
             <span className="text-sm text-white/80 text-center sm:text-left">
               {SITE.phoneMobile}
@@ -320,7 +320,7 @@ export default function EmergencyExit() {
             <div className="rounded-2xl bg-white/10 p-6">
               <h3 className="font-display text-2xl text-green">Reach Us Directly</h3>
               <p className="mt-3 text-sm text-white/85">
-                If you or your family need guidance, contact us on WhatsApp. Our
+                If you or your family need guidance, contact us by phone. Our
                 team operates 24 hours a day. All communication is confidential.
               </p>
               <a href={tel} className="btn-green mt-5 w-full">

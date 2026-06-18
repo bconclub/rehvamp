@@ -181,7 +181,7 @@ export default function EmergencyExitLog() {
             <h2 className="relative text-white display-md">Need Assistance?</h2>
             <p className="relative mx-auto mt-4 max-w-xl text-white/85">
               Our team is available 24 hours a day. If you or your family need
-              humanitarian guidance, reach out directly on WhatsApp.
+              humanitarian guidance, reach out to us directly by phone.
             </p>
             <div className="relative mt-7 flex flex-wrap justify-center gap-3">
               <Link to="/emergency-exit-guidance" className="btn-green">
