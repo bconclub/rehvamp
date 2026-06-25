@@ -121,7 +121,7 @@ export default function Home() {
           <Reveal delay={0.2} className="h-full">
             <img
               src={IMG.home.trioRight}
-              alt="A teenager with younger children"
+              alt="Founder Ishita Gupta with children at play"
               className="h-full min-h-[320px] w-full rounded-3xl object-cover object-top shadow-soft"
             />
           </Reveal>
