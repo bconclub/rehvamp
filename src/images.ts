@@ -10,8 +10,8 @@ export const IMG = {
   },
   home: {
     hero: "/images/home/hero-v1.webp", // Hero Image 1 V1 (compressed from PNG)
-    trioLeft: "/images/home/trio-library.webp", // founder Ishita in a library (hi-res)
-    trioRight: "/images/home/trio-playing.webp", // founder Ishita with children on the playground
+    trioLeft: "/images/home/trio-playing.webp", // founder Ishita with children on the playground
+    trioRight: "/images/home/trio-library.webp", // founder Ishita in a library (hi-res)
     heroChildren: "/images/home/people-1.webp", // children learning with a mentor
     childBoard: "/images/home/child-board.webp", // child holding a board (cutout)
     founderCutout: "/images/home/founder-cutout.webp", // founder cut-out (PNG/alpha) for the safe-spaces card

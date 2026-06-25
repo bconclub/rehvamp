@@ -75,7 +75,7 @@ export default function Home() {
           <Reveal className="h-full">
             <img
               src={IMG.home.trioLeft}
-              alt="Founder Ishita Gupta studying in a library"
+              alt="Founder Ishita Gupta with children at play"
               className="h-full min-h-[320px] w-full rounded-3xl object-cover object-top shadow-soft"
             />
           </Reveal>
@@ -121,7 +121,7 @@ export default function Home() {
           <Reveal delay={0.2} className="h-full">
             <img
               src={IMG.home.trioRight}
-              alt="Founder Ishita Gupta with children at play"
+              alt="Founder Ishita Gupta studying in a library"
               className="h-full min-h-[320px] w-full rounded-3xl object-cover object-top shadow-soft"
             />
           </Reveal>
