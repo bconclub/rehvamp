@@ -203,11 +203,27 @@ export default function Home() {
 
       {/* 6 - TOGETHER, WE MAKE A DIFFERENCE, video section */}
       <section className="relative overflow-hidden bg-purple py-20 md:py-28">
+        {/* Mobile backdrop: subtle wing-logo glow (unchanged) */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0 z-0 md:hidden"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 50% 56%, rgba(236,211,255,0.5), rgba(164,91,230,0.18) 26%, transparent 64%), linear-gradient(180deg, rgba(47,12,100,0.22), rgba(33,6,78,0.42))",
+          }}
+        />
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute left-1/2 top-[56%] z-0 w-[1100px] max-w-[168vw] -translate-x-1/2 -translate-y-1/2 opacity-60 md:hidden"
+        >
+          <img src={IMG.logo.wingBg} alt="" className="w-full max-w-none object-contain" />
+        </div>
+        {/* Desktop backdrop: supplied phones background */}
         <img
           src={IMG.home.togetherBg}
           alt=""
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover"
+          className="pointer-events-none absolute inset-0 z-0 hidden h-full w-full object-cover md:block"
         />
         <div className="container-x relative z-10">
           <Reveal className="mx-auto max-w-2xl text-center">
@@ -221,7 +237,18 @@ export default function Home() {
             </p>
           </Reveal>
 
-          <Reveal className="mx-auto mt-10 w-full max-w-[680px]">
+          {/* Mobile: portrait player with the original cover (unchanged) */}
+          <Reveal className="mx-auto mt-10 w-full max-w-[340px] md:hidden">
+            <div className="rounded-3xl bg-purple-100/20 p-1 shadow-[0_24px_70px_rgba(28,6,64,0.45),0_0_38px_rgba(184,100,255,0.55)] ring-2 ring-purple-200/55">
+              <VimeoPlayer
+                id={VIMEO_ID}
+                poster={IMG.home.doomScrollingCover}
+                className="aspect-[9/16] rounded-[1.35rem] shadow-card"
+              />
+            </div>
+          </Reveal>
+          {/* Desktop: 16:9 player with the landscape thumbnail */}
+          <Reveal className="mx-auto mt-10 hidden w-full max-w-[680px] md:block">
             <div className="rounded-3xl bg-purple-100/20 p-1 shadow-[0_24px_70px_rgba(28,6,64,0.45),0_0_38px_rgba(184,100,255,0.55)] ring-2 ring-purple-200/55">
               <VimeoPlayer
                 id={VIMEO_ID}
