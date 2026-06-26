@@ -10,6 +10,8 @@ export const IMG = {
   },
   home: {
     hero: "/images/home/hero-v1.webp", // Hero Image 1 V1 (compressed from PNG)
+    togetherBg: "/images/home/together-bg.webp", // backdrop for the "Together" video section
+    togetherThumbnail: "/images/home/together-thumbnail.webp", // 16:9 cover for the video
     trioLeft: "/images/home/trio-playing.webp", // founder Ishita with children on the playground
     trioRight: "/images/home/trio-library.webp", // founder Ishita in a library (hi-res)
     heroChildren: "/images/home/people-1.webp", // children learning with a mentor
