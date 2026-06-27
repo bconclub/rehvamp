@@ -42,7 +42,7 @@ export const IMG = {
     event: "/images/blog/event.jpg",
   },
   gaza: {
-    heroBg: "/images/gaza/hero-bg.webp", // supplied backdrop for the hero
+    heroBg: "/images/gaza/hero-bg-eagle.webp", // brand eagle backdrop for the hero
     g1: "/images/gaza/gaza-1.jpg",
     g2: "/images/gaza/gaza-2.webp",
     g3: "/images/gaza/gaza-3.jpg",
