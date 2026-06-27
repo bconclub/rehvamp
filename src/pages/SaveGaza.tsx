@@ -35,11 +35,11 @@ export default function SaveGaza() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-purple text-white">
         <img
-          src={IMG.gaza.g1}
+          src={IMG.gaza.heroBg}
           alt=""
-          className="absolute inset-0 h-full w-full object-cover opacity-25"
+          className="absolute inset-0 h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-purple via-purple/85 to-purple/50" />
+        <div className="absolute inset-0 bg-gradient-to-r from-purple/90 via-purple/55 to-purple/25" />
         <div className="container-x relative py-20 md:py-28">
           <motion.p
             initial={{ opacity: 0, y: 10 }}
