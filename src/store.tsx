@@ -65,15 +65,11 @@ function reconcile(stored: ContentState): ContentState {
   const seedSlugs = new Set(fresh.posts.map((p) => p.slug));
   const extraPosts = (stored.posts ?? []).filter((p) => !seedSlugs.has(p.slug));
 
-  const storyKey = (s: { title: string; name: string }) => `${s.title}|${s.name}`;
-  const seedStoryKeys = new Set(fresh.stories.map(storyKey));
-  const extraStories = (stored.stories ?? []).filter(
-    (s) => !seedStoryKeys.has(storyKey(s))
-  );
-
   return {
     posts: [...extraPosts, ...fresh.posts],
-    stories: [...fresh.stories, ...extraStories],
+    // Stories are entirely code-seeded, so use the seed as-is. Keeping stored
+    // "extras" would resurface stale copies when a seed story is renamed.
+    stories: fresh.stories,
   };
 }
 
