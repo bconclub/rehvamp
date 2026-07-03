@@ -5,7 +5,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { BLOG_POSTS, TESTIMONIALS, type BlogPost } from "./site";
+import { BLOG_POSTS, TESTIMONIALS, type BlogPost, type BodyBlock } from "./site";
 
 // ---------------------------------------------------------------------------
 // Content store, the backend seam for blog posts & stories.
@@ -27,6 +27,7 @@ export type Story = {
   role: string;
   image: string;
   video?: string; // Vimeo id
+  body?: BodyBlock[];
 };
 
 type ContentState = { posts: Post[]; stories: Story[] };
@@ -49,6 +50,7 @@ function seed(): ContentState {
       role: t.role,
       image: t.image,
       video: t.video,
+      body: t.body,
     })),
   };
 }
@@ -158,6 +160,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
         role: st.role ?? "",
         image: st.image ?? "/images/home/people-1.webp",
         video: st.video,
+        body: st.body,
       };
       const exists = st.id && s.stories.some((x) => x.id === st.id);
       return {

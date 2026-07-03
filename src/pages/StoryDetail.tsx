@@ -5,6 +5,40 @@ import Reveal from "../components/Reveal";
 import VimeoPlayer from "../components/VimeoPlayer";
 import { Arrow } from "../components/Icons";
 import { useContent } from "../store";
+import type { BodyBlock } from "../site";
+
+function Block({ b }: { b: BodyBlock }) {
+  switch (b.type) {
+    case "h2":
+      return <h2 className="mt-10 font-display text-3xl text-ink first:mt-0">{b.text}</h2>;
+    case "h3":
+      return <h3 className="mt-8 font-display text-2xl text-purple">{b.text}</h3>;
+    case "blockquote":
+      return (
+        <blockquote className="my-6 rounded-2xl border-l-4 border-purple bg-purple-50 py-5 pl-6 pr-5">
+          <p className="font-display text-2xl leading-snug text-ink">{b.text}</p>
+          {b.by && (
+            <cite className="mt-3 block text-sm font-semibold not-italic text-purple">
+              {b.by}
+            </cite>
+          )}
+        </blockquote>
+      );
+    case "ul":
+      return (
+        <ul className="space-y-2 pl-1">
+          {b.items.map((item, j) => (
+            <li key={j} className="flex gap-3 text-lg text-body">
+              <span className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-green" />
+              {item}
+            </li>
+          ))}
+        </ul>
+      );
+    default:
+      return <p className="text-lg leading-relaxed text-body">{b.text}</p>;
+  }
+}
 
 export default function StoryDetail() {
   const { slug } = useParams();
@@ -62,22 +96,30 @@ export default function StoryDetail() {
         </Reveal>
       </div>
 
-      {/* Quote */}
+      {/* Story body */}
       <section className="container-x py-14">
         <Reveal className="mx-auto max-w-2xl">
-          <blockquote className="rounded-2xl border-l-4 border-purple bg-purple-50 py-6 pl-6 pr-5">
-            <p className="font-display text-2xl leading-snug text-ink md:text-3xl">
-              "{story.quote}"
-            </p>
-            {story.name && (
-              <cite className="mt-4 block text-sm font-semibold not-italic text-purple">
-                {story.name}
-                {story.role ? `, ${story.role}` : ""}
-              </cite>
-            )}
-          </blockquote>
+          {story.body && story.body.length > 0 ? (
+            <div className="space-y-5">
+              {story.body.map((b, i) => (
+                <Block key={i} b={b} />
+              ))}
+            </div>
+          ) : (
+            <blockquote className="rounded-2xl border-l-4 border-purple bg-purple-50 py-6 pl-6 pr-5">
+              <p className="font-display text-2xl leading-snug text-ink md:text-3xl">
+                "{story.quote}"
+              </p>
+              {story.name && (
+                <cite className="mt-4 block text-sm font-semibold not-italic text-purple">
+                  {story.name}
+                  {story.role ? `, ${story.role}` : ""}
+                </cite>
+              )}
+            </blockquote>
+          )}
 
-          <div className="mt-8 flex items-center gap-3 rounded-2xl bg-green-100 p-6">
+          <div className="mt-10 flex items-center gap-3 rounded-2xl bg-green-100 p-6">
             <span className="h-2 w-2 shrink-0 rounded-full bg-green" />
             <p className="text-sm text-body">
               Inspired by this story?{" "}

@@ -94,19 +94,59 @@ export type Testimonial = {
   name: string;
   role: string;
   image: string;
-  video?: string; // Vimeo id — when set, the story page plays this video
+  video?: string; // Vimeo id: when set, the story page plays this video
+  body?: BodyBlock[]; // optional long-form article shown on the story page
 };
 
 export const TESTIMONIALS: Testimonial[] = [
   {
-    slug: "your-help-gave-me-a-future",
-    title: "Your help gave me a future",
+    slug: "finding-her-voice-again",
+    title: "Finding Her Voice Again: Elena's Journey from Isolation to Empowerment",
     quote:
-      "They spent years trying to take my worth away. The REHVAMP Foundation helped me remember it was never theirs to take.",
-    name: "Aisha",
-    role: "Programme graduate",
+      "For years, I felt like I was losing myself beneath the weight of other people's actions and opinions. Rehvamp Foundation helped me find my way back.",
+    name: "Elena",
+    role: "Artist & musician",
     image: "/images/stories/your-help.webp",
     video: "1206838061",
+    body: [
+      { type: "p", text: "Success is often seen as the beginning of a dream. For Elena, it became the beginning of an unexpected struggle." },
+      { type: "p", text: "An artist and musician with a passion for creativity and self-expression, Elena was building a promising future. Following her first major fashion campaign and editorial feature with a leading magazine, new opportunities began to emerge and her career was gaining momentum." },
+      { type: "p", text: "Yet as her visibility increased, so did the challenges she faced." },
+      { type: "p", text: "Over time, Elena became the target of persistent harassment, bullying, and unwanted attention. False narratives were created, boundaries were repeatedly challenged, and public criticism began to overshadow the confidence that had once driven her ambitions." },
+      { type: "p", text: "What began as a difficult experience gradually evolved into years of emotional strain." },
+      { type: "blockquote", text: "The hardest part wasn't a single comment or incident. It was the feeling of carrying that weight every day. After a while, you begin to question yourself and lose sight of who you are.", by: "Elena" },
+      { type: "h2", text: "The Hidden Impact of Prolonged Harassment" },
+      { type: "p", text: "Behind every act of bullying or harassment is a person living with its consequences." },
+      { type: "p", text: "For Elena, the impact extended far beyond what others could see. The constant pressure affected her emotional wellbeing, relationships, and sense of security. The creativity that had once brought her joy became increasingly difficult to access as anxiety and self-doubt took hold." },
+      { type: "p", text: "Like many people experiencing prolonged emotional abuse, she began to feel isolated." },
+      { type: "p", text: "The confidence she had worked so hard to build slowly faded. Opportunities felt further away. There were moments when she struggled to see a path forward." },
+      { type: "blockquote", text: "I felt unheard and alone. I felt like people had formed opinions about me without ever knowing who I really was.", by: "Elena" },
+      { type: "h2", text: "Finding Support at the Right Time" },
+      { type: "p", text: "Everything began to change when Elena connected with Rehvamp Foundation." },
+      { type: "p", text: "At a point in her life when she felt overwhelmed and unsupported, the Foundation provided something she had been missing for a long time: a safe space to be heard." },
+      { type: "p", text: "Rather than focusing on the negativity surrounding her circumstances, Rehvamp Foundation focused on Elena as a person." },
+      { type: "p", text: "Through compassionate counselling, practical guidance, emotional support, and ongoing encouragement, the Foundation helped Elena begin the process of rebuilding her confidence and reclaiming her sense of self-worth." },
+      { type: "p", text: "For the first time in years, she felt genuinely listened to. She felt understood. Most importantly, she felt believed." },
+      { type: "p", text: "The Foundation's support helped Elena work through the emotional impact of years of bullying and harassment. Through counselling and guidance, she gained tools to manage anxiety, rebuild resilience, and develop healthier ways of coping with the challenges she had faced." },
+      { type: "p", text: "Step by step, she began to rediscover the strengths that had always existed within her." },
+      { type: "h2", text: "Rebuilding Confidence and Reclaiming Identity" },
+      { type: "p", text: "Healing is rarely linear." },
+      { type: "p", text: "For Elena, it meant learning to trust herself again. It meant recognising that her value was never defined by public opinion, criticism, or the actions of those who sought to undermine her confidence." },
+      { type: "p", text: "With continued support and encouragement, she gradually reconnected with her creativity, her ambitions, and her belief in her own potential." },
+      { type: "p", text: "Today, Elena continues to embrace her identity as an artist and musician while using her experiences to encourage others who may be facing similar challenges." },
+      { type: "p", text: "Her story is not defined by what happened to her. It is defined by how she responded." },
+      { type: "p", text: "Through courage, resilience, and the support of people who cared, she transformed a period of profound adversity into a journey of growth, healing, and self-discovery." },
+      { type: "h2", text: "A Message of Hope" },
+      { type: "p", text: "Elena's story is a powerful reminder that no one should face bullying, harassment, or emotional abuse alone." },
+      { type: "p", text: "Support matters. Being heard matters. Having someone believe in you can make all the difference." },
+      { type: "p", text: "At Rehvamp Foundation, we believe every individual deserves compassion, guidance, and the opportunity to rebuild their confidence and create a brighter future." },
+      { type: "p", text: "For Elena, that support became the turning point that helped her find her voice again." },
+      { type: "p", text: "Today, she stands stronger, more confident, and more hopeful than she ever thought possible, not because of what she endured, but because she chose not to let it define her." },
+      { type: "h2", text: "Elena's Reflection" },
+      { type: "blockquote", text: "For years, I felt like I was losing myself beneath the weight of other people's actions and opinions. Rehvamp Foundation helped me find my way back. Through counselling, guidance, and unwavering support, they reminded me that my worth had never disappeared, I had simply forgotten how to see it. They helped me heal, rebuild my confidence, and believe in myself again.", by: "Elena" },
+      { type: "p", text: "At Rehvamp Foundation, every journey begins with support, grows through resilience, and leads toward a future filled with possibility." },
+      { type: "h3", text: "Heal. Grow. Inspire." },
+    ],
   },
   {
     slug: "a-childs-dream-fulfilled",
