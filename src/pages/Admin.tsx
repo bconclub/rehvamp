@@ -305,6 +305,7 @@ function StoryForm({
     name: initial.name ?? "",
     role: initial.role ?? "",
     image: initial.image ?? IMG.home.heroChildren,
+    video: initial.video ?? "",
   });
   const set = (k: string, v: string) => setF((s) => ({ ...s, [k]: v }));
   return (
@@ -330,6 +331,9 @@ function StoryForm({
         </Field>
       </div>
       <ImageField value={f.image} onChange={(v) => set("image", v)} />
+      <Field label="Vimeo video ID (optional — opens a story page with the video)">
+        <input className="input" value={f.video} placeholder="e.g. 1206838061" onChange={(e) => set("video", e.target.value)} />
+      </Field>
       <div className="flex gap-3 pt-1">
         <button type="submit" className="btn-primary">Save Story</button>
         <button type="button" onClick={onCancel} className="btn-outline">Cancel</button>

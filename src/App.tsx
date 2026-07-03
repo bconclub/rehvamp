@@ -13,6 +13,7 @@ import EmergencyExit from "./pages/EmergencyExit";
 import EmergencyExitLog from "./pages/EmergencyExitLog";
 import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
+import StoryDetail from "./pages/StoryDetail";
 import Legal from "./pages/Legal";
 import Admin from "./pages/Admin";
 import NotFound from "./pages/NotFound";
@@ -35,6 +36,7 @@ export default function App() {
           <Route path="/emergency-exit-guidance/log" element={<EmergencyExitLog />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/blog/:slug" element={<BlogPost />} />
+          <Route path="/stories/:slug" element={<StoryDetail />} />
           <Route path="/privacy-policy" element={<Legal kind="privacy" />} />
           <Route path="/terms-conditions" element={<Legal kind="terms" />} />
           <Route path="/admin" element={<Admin />} />

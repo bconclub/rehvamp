@@ -20,11 +20,13 @@ export type Post = BlogPost & { id: string };
 
 export type Story = {
   id: string;
+  slug: string;
   title: string;
   quote: string;
   name: string;
   role: string;
   image: string;
+  video?: string; // Vimeo id
 };
 
 type ContentState = { posts: Post[]; stories: Story[] };
@@ -40,11 +42,13 @@ function seed(): ContentState {
     posts: BLOG_POSTS.map((p) => ({ ...p, id: uid() })),
     stories: TESTIMONIALS.map((t) => ({
       id: uid(),
+      slug: t.slug,
       title: t.title,
       quote: t.quote,
       name: t.name,
       role: t.role,
       image: t.image,
+      video: t.video,
     })),
   };
 }
@@ -147,11 +151,13 @@ export function ContentProvider({ children }: { children: ReactNode }) {
     setState((s) => {
       const base: Story = {
         id: st.id ?? uid(),
+        slug: st.slug && st.slug.trim() ? slugify(st.slug) : slugify(st.title ?? "story"),
         title: st.title ?? "Untitled",
         quote: st.quote ?? "",
         name: st.name ?? "",
         role: st.role ?? "",
         image: st.image ?? "/images/home/people-1.webp",
+        video: st.video,
       };
       const exists = st.id && s.stories.some((x) => x.id === st.id);
       return {

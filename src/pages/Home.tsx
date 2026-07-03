@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import PageTransition from "../components/PageTransition";
@@ -8,7 +7,7 @@ import NewsletterForm from "../components/NewsletterForm";
 import VimeoPlayer from "../components/VimeoPlayer";
 import Seo from "../components/Seo";
 import { FOCUS_AREAS } from "../site";
-import { useContent, type Story } from "../store";
+import { useContent } from "../store";
 import { IMG } from "../images";
 
 const VIMEO_ID = "1200983875";
@@ -37,7 +36,6 @@ const BE_THE_CHANGE = [
 
 export default function Home() {
   const { posts, stories } = useContent();
-  const [activeStory, setActiveStory] = useState<Story | null>(null);
   return (
     <PageTransition>
       <Seo
@@ -368,7 +366,7 @@ export default function Home() {
       </section>
 
       {/* 9 - TESTIMONIALS (Real People, Real Change) */}
-      <section className="bg-green-100 py-16 md:py-24">
+      <section id="stories" className="scroll-mt-24 bg-green-100 py-16 md:py-24">
         <div className="container-x">
           <Reveal>
             <h2 className="display-lg text-ink">Real People, Real Change</h2>
@@ -376,9 +374,8 @@ export default function Home() {
           <div className="mt-10 grid gap-6 md:grid-cols-3">
             {stories.map((t, i) => (
               <Reveal key={t.id} delay={i * 0.1}>
-                <button
-                  type="button"
-                  onClick={() => setActiveStory(t)}
+                <Link
+                  to={`/stories/${t.slug}`}
                   className="group flex h-full w-full flex-col rounded-3xl bg-purple p-5 text-left shadow-card transition-all duration-300 hover:-translate-y-1"
                 >
                   <div className="overflow-hidden rounded-2xl">
@@ -394,68 +391,12 @@ export default function Home() {
                   <span className="mt-auto inline-flex items-center gap-2 pt-5 text-sm font-semibold text-white group-hover:gap-3">
                     <Arrow className="h-4 w-4" /> Read Story
                   </span>
-                </button>
+                </Link>
               </Reveal>
             ))}
           </div>
         </div>
       </section>
-
-      {/* Story modal */}
-      {activeStory && (
-        <div
-          className="fixed inset-0 z-[80] flex items-center justify-center p-4"
-          role="dialog"
-          aria-modal="true"
-        >
-          <div
-            className="absolute inset-0 bg-ink/60 backdrop-blur-sm"
-            onClick={() => setActiveStory(null)}
-          />
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96, y: 12 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-[2rem] bg-white shadow-card"
-          >
-            <img
-              src={activeStory.image}
-              alt=""
-              className="h-56 w-full object-cover"
-            />
-            <button
-              type="button"
-              onClick={() => setActiveStory(null)}
-              aria-label="Close"
-              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-ink shadow-soft transition-colors hover:bg-white"
-            >
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round">
-                <path d="M6 6l12 12M18 6L6 18" />
-              </svg>
-            </button>
-            <div className="p-8">
-              <h3 className="font-display text-3xl text-purple">
-                {activeStory.title}
-              </h3>
-              {activeStory.quote && (
-                <blockquote className="mt-4 text-lg leading-relaxed text-body">
-                  "{activeStory.quote}"
-                </blockquote>
-              )}
-              {(activeStory.name || activeStory.role) && (
-                <div className="mt-5 border-t border-purple-100 pt-4">
-                  {activeStory.name && (
-                    <p className="font-semibold text-ink">{activeStory.name}</p>
-                  )}
-                  {activeStory.role && (
-                    <p className="text-sm text-body">{activeStory.role}</p>
-                  )}
-                </div>
-              )}
-            </div>
-          </motion.div>
-        </div>
-      )}
 
       {/* 10 - NEWSLETTER */}
       <section className="container-x py-16 md:py-20">

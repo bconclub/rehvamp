@@ -87,29 +87,43 @@ export const STATS = [
   { value: "100%", label: "Mission-driven" },
 ];
 
-export const TESTIMONIALS = [
+export type Testimonial = {
+  slug: string;
+  title: string;
+  quote: string;
+  name: string;
+  role: string;
+  image: string;
+  video?: string; // Vimeo id — when set, the story page plays this video
+};
+
+export const TESTIMONIALS: Testimonial[] = [
   {
+    slug: "your-help-gave-me-a-future",
+    title: "Your help gave me a future",
     quote:
-      "Your help gave me a future. I never thought someone would believe in me, REHVAMP did.",
+      "They spent years trying to take my worth away. The REHVAMP Foundation helped me remember it was never theirs to take.",
     name: "Aisha",
     role: "Programme graduate",
-    title: "Your help gave me a future",
-    image: IMG.home.classroom,
+    image: "/images/stories/your-help.webp",
+    video: "1206838061",
   },
   {
+    slug: "a-childs-dream-fulfilled",
+    title: "A Child's Dream Fulfilled",
     quote:
       "A child's dream fulfilled. With the right support, my son went back to school and found his smile again.",
     name: "Maria",
     role: "Parent",
-    title: "A Child's Dream Fulfilled",
     image: IMG.home.people2,
   },
   {
+    slug: "healing-with-kindness",
+    title: "Healing with Kindness",
     quote:
       "Healing with kindness changed everything. The team treated us like family from day one.",
     name: "Daniel",
     role: "Beneficiary",
-    title: "Healing with Kindness",
     image: IMG.home.people3,
   },
 ];
