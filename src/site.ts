@@ -106,7 +106,7 @@ export const TESTIMONIALS: Testimonial[] = [
       "For years, I felt like I was losing myself beneath the weight of other people's actions and opinions. Rehvamp Foundation helped me find my way back.",
     name: "Elena",
     role: "Artist & musician",
-    image: "/images/stories/your-help.webp",
+    image: "/images/stories/elena-cover.webp",
     video: "1206838061",
     body: [
       { type: "p", text: "Success is often seen as the beginning of a dream. For Elena, it became the beginning of an unexpected struggle." },
