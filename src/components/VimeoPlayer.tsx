@@ -48,7 +48,15 @@ export default function VimeoPlayer({
         return;
       }
       if (data.event === "play") setPlaying(true);
-      if (data.event === "pause" || data.event === "ended") setPlaying(false);
+      if (data.event === "pause") setPlaying(false);
+      if (data.event === "ended") {
+        // Reset to the start and bring the cover back so Vimeo's end screen
+        // (replay / related videos / logo) never shows.
+        post("setCurrentTime", "0");
+        post("pause");
+        setPlaying(false);
+        setStarted(false);
+      }
     }
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
