@@ -29,12 +29,22 @@ export default function VimeoPlayer({
     );
   }
 
-  // Ask the player to emit play/pause/ended back to us so our button stays in
-  // sync (e.g. resets to "play" when the clip ends).
+  // Ask the player to emit events back to us. Subscriptions only stick once the
+  // player is "ready", so we (re)subscribe on both iframe load AND the ready
+  // event. We listen for "ended" and the older "finish" event name.
   function subscribe() {
-    post("addEventListener", "play");
-    post("addEventListener", "pause");
-    post("addEventListener", "ended");
+    ["play", "pause", "ended", "finish"].forEach((ev) =>
+      post("addEventListener", ev)
+    );
+  }
+
+  function handleEnd() {
+    // Reset to the start and bring the cover back so Vimeo's end screen
+    // (replay / related videos / "More from" / logo) never shows.
+    post("setCurrentTime", "0");
+    post("pause");
+    setPlaying(false);
+    setStarted(false);
   }
 
   // Keep our button state in sync if playback ends or changes inside Vimeo.
@@ -47,19 +57,14 @@ export default function VimeoPlayer({
       } catch {
         return;
       }
+      if (data.event === "ready") subscribe();
       if (data.event === "play") setPlaying(true);
       if (data.event === "pause") setPlaying(false);
-      if (data.event === "ended") {
-        // Reset to the start and bring the cover back so Vimeo's end screen
-        // (replay / related videos / logo) never shows.
-        post("setCurrentTime", "0");
-        post("pause");
-        setPlaying(false);
-        setStarted(false);
-      }
+      if (data.event === "ended" || data.event === "finish") handleEnd();
     }
     window.addEventListener("message", onMessage);
     return () => window.removeEventListener("message", onMessage);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function toggle() {
