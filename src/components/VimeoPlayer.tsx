@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from "react";
+import Player from "@vimeo/player";
 
 // Unbranded Vimeo player.
 //
-// Vimeo's logo lives inside the control bar, and there's no embed param to
-// remove just the logo. So we hide the controls entirely (controls=0 → no
-// control bar, no logo, no badge) and drive play/pause ourselves through the
-// player's postMessage API. Clicking anywhere on the video toggles playback;
-// a green play button shows while paused.
+// Controls are hidden (controls=0 → no control bar / logo / badge) and we drive
+// play/pause via the Vimeo SDK. To GUARANTEE Vimeo's end screen ("More from …"
+// / related videos / logo) never appears, we poll the playback position while
+// playing and, a hair before the clip ends, pause + rewind + bring the cover
+// back — so the player never reaches the state that renders the end screen.
 export default function VimeoPlayer({
   id,
   className = "",
@@ -17,65 +18,78 @@ export default function VimeoPlayer({
   poster?: string;
 }) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
+  const playerRef = useRef<Player | null>(null);
+  const pollRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const [playing, setPlaying] = useState(false);
   const [started, setStarted] = useState(false);
 
-  const ORIGIN = "https://player.vimeo.com";
-
-  function post(method: string, value?: string) {
-    iframeRef.current?.contentWindow?.postMessage(
-      JSON.stringify(value === undefined ? { method } : { method, value }),
-      ORIGIN
-    );
-  }
-
-  // Ask the player to emit events back to us. Subscriptions only stick once the
-  // player is "ready", so we (re)subscribe on both iframe load AND the ready
-  // event. We listen for "ended" and the older "finish" event name.
-  function subscribe() {
-    ["play", "pause", "ended", "finish"].forEach((ev) =>
-      post("addEventListener", ev)
-    );
-  }
-
-  function handleEnd() {
-    // Reset to the start and bring the cover back so Vimeo's end screen
-    // (replay / related videos / "More from" / logo) never shows.
-    post("setCurrentTime", "0");
-    post("pause");
-    setPlaying(false);
-    setStarted(false);
-  }
-
-  // Keep our button state in sync if playback ends or changes inside Vimeo.
   useEffect(() => {
-    function onMessage(e: MessageEvent) {
-      if (e.origin !== ORIGIN) return;
-      let data: { event?: string };
-      try {
-        data = typeof e.data === "string" ? JSON.parse(e.data) : e.data;
-      } catch {
-        return;
-      }
-      if (data.event === "ready") subscribe();
-      if (data.event === "play") setPlaying(true);
-      if (data.event === "pause") setPlaying(false);
-      if (data.event === "ended" || data.event === "finish") handleEnd();
-    }
-    window.addEventListener("message", onMessage);
-    return () => window.removeEventListener("message", onMessage);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (!iframeRef.current) return;
+    const player = new Player(iframeRef.current);
+    playerRef.current = player;
+
+    const stopPoll = () => {
+      if (pollRef.current) clearInterval(pollRef.current);
+      pollRef.current = null;
+    };
+
+    // Rewind, pause, and re-show the cover — hides Vimeo's end screen entirely.
+    const reset = () => {
+      stopPoll();
+      player.setCurrentTime(0).catch(() => {});
+      player.pause().catch(() => {});
+      setPlaying(false);
+      setStarted(false);
+    };
+
+    const startPoll = () => {
+      stopPoll();
+      pollRef.current = setInterval(async () => {
+        try {
+          const [t, dur] = await Promise.all([
+            player.getCurrentTime(),
+            player.getDuration(),
+          ]);
+          if (dur && dur - t <= 0.6) reset();
+        } catch {
+          /* ignore */
+        }
+      }, 200);
+    };
+
+    const onPlay = () => {
+      setPlaying(true);
+      setStarted(true);
+      startPoll();
+    };
+    const onPause = () => {
+      setPlaying(false);
+      stopPoll();
+    };
+
+    player.on("play", onPlay);
+    player.on("pause", onPause);
+    player.on("ended", reset);
+
+    return () => {
+      stopPoll();
+      player.off("play", onPlay);
+      player.off("pause", onPause);
+      player.off("ended", reset);
+    };
   }, []);
 
   function toggle() {
-    if (playing) post("pause");
-    else post("play");
+    const player = playerRef.current;
+    if (!player) return;
+    if (playing) player.pause().catch(() => {});
+    else player.play().catch(() => {});
     setStarted(true);
     setPlaying((p) => !p);
   }
 
   const src =
-    `${ORIGIN}/video/${id}` +
+    `https://player.vimeo.com/video/${id}` +
     `?controls=0&title=0&byline=0&portrait=0&badge=0&dnt=1&playsinline=1`;
 
   return (
@@ -86,7 +100,6 @@ export default function VimeoPlayer({
         title="Rehvamp video"
         allow="autoplay; fullscreen; picture-in-picture"
         allowFullScreen
-        onLoad={subscribe}
         className="pointer-events-none h-full w-full"
       />
       {/* Custom cover image, shown until the video is first played */}
