@@ -281,7 +281,7 @@ export default function Home() {
               return (
                 <Reveal key={f.title} delay={i * 0.08}>
                   <div
-                    className={`flex h-full gap-5 rounded-3xl p-8 shadow-card ${
+                    className={`flex h-full items-center gap-5 rounded-3xl p-8 shadow-card ${
                       purple ? "bg-purple text-white" : "bg-green text-ink"
                     }`}
                   >
@@ -303,14 +303,6 @@ export default function Home() {
                       >
                         {f.blurb}
                       </p>
-                      <Link
-                        to="/get-involved"
-                        className={`mt-4 inline-flex items-center gap-2 text-sm font-semibold hover:gap-3 ${
-                          purple ? "text-green" : "text-purple"
-                        }`}
-                      >
-                        Learn More <Arrow className="h-4 w-4" />
-                      </Link>
                     </div>
                   </div>
                 </Reveal>
