@@ -281,7 +281,7 @@ export default function Home() {
               return (
                 <Reveal key={f.title} delay={i * 0.08}>
                   <div
-                    className={`flex h-full items-center gap-5 rounded-3xl p-8 shadow-card ${
+                    className={`flex h-full min-h-[15rem] items-center gap-5 rounded-3xl p-8 shadow-card ${
                       purple ? "bg-purple text-white" : "bg-green text-ink"
                     }`}
                   >
