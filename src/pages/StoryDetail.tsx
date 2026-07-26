@@ -80,7 +80,17 @@ export default function StoryDetail() {
       {/* Video / image */}
       <div className="container-x -mt-2">
         <Reveal className="mx-auto max-w-3xl">
-          {story.video ? (
+          {story.videoFile ? (
+            <video
+              src={story.videoFile}
+              poster={story.image}
+              controls
+              controlsList="nodownload"
+              playsInline
+              preload="metadata"
+              className="aspect-video w-full rounded-[2rem] bg-black object-cover shadow-card"
+            />
+          ) : story.video ? (
             <VimeoPlayer
               id={story.video}
               poster={story.image}

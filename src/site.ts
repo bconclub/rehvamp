@@ -95,6 +95,7 @@ export type Testimonial = {
   role: string;
   image: string;
   video?: string; // Vimeo id: when set, the story page plays this video
+  videoFile?: string; // self-hosted mp4 path; takes priority over `video`
   body?: BodyBlock[]; // optional long-form article shown on the story page
 };
 
@@ -149,13 +150,45 @@ export const TESTIMONIALS: Testimonial[] = [
     ],
   },
   {
-    slug: "a-childs-dream-fulfilled",
-    title: "A Child's Dream Fulfilled",
+    slug: "empowering-higher-education",
+    title: "Empowering Higher Education",
     quote:
-      "A child's dream fulfilled. With the right support, my son went back to school and found his smile again.",
-    name: "Maria",
-    role: "Parent",
+      "Without support, I would have had to leave college after the first semester. Instead, I graduated, found work, and can now help my family.",
+    name: "Aarav",
+    role: "Sponsored graduate",
     image: IMG.home.people2,
+    videoFile: "/videos/aarav.mp4",
+    body: [
+      { type: "h2", text: "Background" },
+      { type: "p", text: "Aarav grew up in a low-income family, but despite financial hardships, he consistently excelled academically and secured admission to a reputed college." },
+      { type: "p", text: "Unfortunately, the annual tuition fees and educational expenses exceeded his family's financial capacity, placing his education at risk. Without financial support, Aarav faced the possibility of discontinuing his studies after the first semester." },
+      { type: "h2", text: "The Challenge" },
+      { type: "p", text: "Aarav required assistance to cover:" },
+      { type: "ul", items: ["Annual college tuition", "Examination fees", "Academic materials", "Basic educational expenses"] },
+      { type: "p", text: "Without support, he would likely have had to abandon his education and take up low-paying work to support his family." },
+      { type: "h2", text: "Rehvamp Foundation's Intervention" },
+      { type: "p", text: "Guided by its mission to Heal. Grow. Inspire., Rehvamp Foundation reviewed Aarav's academic achievements, financial circumstances, and aspirations before approving a comprehensive educational sponsorship." },
+      { type: "p", text: "The Foundation committed to supporting Aarav's education for three consecutive academic years, covering:" },
+      { type: "ul", items: ["100% of annual college tuition fees", "Examination fees", "Essential academic supplies and study materials"] },
+      { type: "p", text: "This support enabled Aarav to continue his education without financial uncertainty while encouraging him to maintain strong academic performance throughout the program." },
+      { type: "h2", text: "The Outcome" },
+      { type: "p", text: "Relieved of financial stress, Aarav dedicated himself fully to his studies. Over the three-year sponsorship period, he:" },
+      { type: "ul", items: ["Maintained excellent academic performance.", "Participated in extracurricular activities and skill-development programs.", "Successfully completed his undergraduate degree."] },
+      { type: "p", text: "Within six months of graduation, Aarav secured full-time employment. His success enabled him to:" },
+      { type: "ul", items: ["Support his family's household expenses.", "Contribute to his younger sister's education.", "Achieve financial independence."] },
+      { type: "h2", text: "Impact" },
+      { type: "h3", text: "For the Beneficiary" },
+      { type: "ul", items: ["Successfully completed a three-year undergraduate degree.", "Built a stable professional career.", "Broke the cycle of financial hardship."] },
+      { type: "h3", text: "For the Family" },
+      { type: "ul", items: ["Improved financial security.", "Reduced dependence on irregular wage labor.", "Created better educational opportunities for younger family members."] },
+      { type: "h3", text: "For the Community" },
+      { type: "p", text: "Inspired by the support he received, Aarav now volunteers at local schools, mentoring students from economically disadvantaged backgrounds and encouraging them to pursue higher education." },
+      { type: "h2", text: "Key Results" },
+      { type: "ul", items: ["Duration of Support: 3 Years", "Tuition Fees Covered: 100%", "Graduation Status: Successfully Graduated", "Employment: Full-time Employment", "Long-term Impact: Improved family income and educational awareness"] },
+      { type: "h2", text: "Conclusion" },
+      { type: "p", text: "Aarav's journey demonstrates how timely educational support can transform not only one student's future but also the lives of an entire family. By removing financial barriers and investing in potential, Rehvamp Foundation empowered Aarav to achieve his dreams and give back to his community." },
+      { type: "p", text: "Every educational sponsorship reflects Rehvamp Foundation's commitment to Heal. Grow. Inspire.: healing financial burdens, fostering personal growth through education, and inspiring lasting change." },
+    ],
   },
   {
     slug: "healing-with-kindness",

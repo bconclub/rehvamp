@@ -27,6 +27,7 @@ export type Story = {
   role: string;
   image: string;
   video?: string; // Vimeo id
+  videoFile?: string; // self-hosted mp4 path
   body?: BodyBlock[];
 };
 
@@ -50,6 +51,7 @@ function seed(): ContentState {
       role: t.role,
       image: t.image,
       video: t.video,
+      videoFile: t.videoFile,
       body: t.body,
     })),
   };
@@ -156,6 +158,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
         role: st.role ?? "",
         image: st.image ?? "/images/home/people-1.webp",
         video: st.video,
+        videoFile: st.videoFile,
         body: st.body,
       };
       const exists = st.id && s.stories.some((x) => x.id === st.id);
