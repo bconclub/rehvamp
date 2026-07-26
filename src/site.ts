@@ -151,12 +151,12 @@ export const TESTIMONIALS: Testimonial[] = [
   },
   {
     slug: "empowering-higher-education",
-    title: "Empowering Higher Education",
+    title: "Breaking the Cycle: Aarav's Journey from Financial Hardship to Graduation",
     quote:
       "Without support, I would have had to leave college after the first semester. Instead, I graduated, found work, and can now help my family.",
     name: "Aarav",
     role: "Sponsored graduate",
-    image: IMG.home.people2,
+    image: "/images/stories/aarav-cover.webp",
     videoFile: "/videos/aarav.mp4",
     body: [
       { type: "h2", text: "Background" },
