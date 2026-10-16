@@ -215,6 +215,9 @@ export type BlogPost = {
   excerpt: string;
   tags: string[];
   image: string;
+  // Optional portrait cover: used for the mobile header and the blog cards,
+  // while `image` (wide) fills the desktop header.
+  imagePortrait?: string;
   body: BodyBlock[];
   relatedPage?: { label: string; to: string };
 };
@@ -228,6 +231,7 @@ export const BLOG_POSTS: BlogPost[] = [
       "Rehvamp Foundation pays tribute to an internationally respected plastic surgeon whose remarkable career, humanitarian contributions and dedication to improving lives leave an enduring legacy.",
     tags: ["InMemoriam", "Tribute", "HumanitarianMedicine"],
     image: IMG.blog.aslani,
+    imagePortrait: IMG.blog.aslaniPortrait,
     body: [
       { type: "p", text: "The Rehvamp Foundation expresses its profound sorrow at the tragic and untimely passing of Dr Alexander Aslani, a distinguished plastic surgeon, humanitarian and highly respected member of the international aesthetic surgery community." },
       { type: "p", text: "Dr Aslani's sudden death in Marbella, Spain, on 7 October 2026 represents a profound loss to his family, loved ones, colleagues, patients and the wider international medical community." },

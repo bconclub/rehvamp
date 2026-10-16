@@ -336,9 +336,9 @@ export default function Home() {
                 >
                   <div className="overflow-hidden rounded-2xl">
                     <img
-                      src={post.image}
+                      src={post.imagePortrait ?? post.image}
                       alt={post.title}
-                      className="h-48 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="h-48 w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                     />
                   </div>
                   <h3 className="mt-5 font-display text-2xl leading-tight text-green">

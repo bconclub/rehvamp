@@ -93,11 +93,23 @@ export default function BlogPost() {
       {/* Hero image */}
       <div className="container-x -mt-2">
         <Reveal>
-          <img
-            src={post.image}
-            alt={post.title}
-            className="h-[400px] w-full rounded-[2rem] object-cover object-top shadow-soft md:h-[480px]"
-          />
+          {post.imagePortrait ? (
+            // Designed covers are shown whole: portrait on mobile, wide on desktop
+            <picture>
+              <source media="(min-width: 768px)" srcSet={post.image} />
+              <img
+                src={post.imagePortrait}
+                alt={post.title}
+                className="h-auto w-full rounded-[2rem] shadow-soft"
+              />
+            </picture>
+          ) : (
+            <img
+              src={post.image}
+              alt={post.title}
+              className="h-[400px] w-full rounded-[2rem] object-cover object-top shadow-soft md:h-[480px]"
+            />
+          )}
         </Reveal>
       </div>
 
@@ -156,9 +168,9 @@ export default function BlogPost() {
                   <li key={r.slug}>
                     <Link to={`/blog/${r.slug}`} className="group flex gap-3">
                       <img
-                        src={r.image}
+                        src={r.imagePortrait ?? r.image}
                         alt=""
-                        className="h-16 w-16 shrink-0 rounded-xl object-cover"
+                        className="h-16 w-16 shrink-0 rounded-xl object-cover object-top"
                       />
                       <span className="text-sm font-medium text-ink group-hover:text-purple">
                         {r.title}

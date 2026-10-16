@@ -42,7 +42,7 @@ export default function Blog() {
           >
             <div className="overflow-hidden rounded-2xl">
               <img
-                src={featured.image}
+                src={featured.imagePortrait ?? featured.image}
                 alt={featured.title}
                 className="h-full min-h-[300px] w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
               />
@@ -72,7 +72,7 @@ export default function Blog() {
               >
                 <div className="overflow-hidden rounded-2xl">
                   <img
-                    src={post.image}
+                    src={post.imagePortrait ?? post.image}
                     alt={post.title}
                     className="h-56 w-full object-cover object-top transition-transform duration-500 group-hover:scale-105"
                   />

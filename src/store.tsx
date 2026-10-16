@@ -133,6 +133,7 @@ export function ContentProvider({ children }: { children: ReactNode }) {
         excerpt: p.excerpt ?? "",
         tags: p.tags ?? [],
         image: p.image ?? "/images/blog/featured.webp",
+        imagePortrait: p.imagePortrait,
         body: p.body ?? [],
       };
       const exists = p.id && s.posts.some((x) => x.id === p.id);
