@@ -225,14 +225,15 @@ export type BlogPost = {
 export const BLOG_POSTS: BlogPost[] = [
   {
     slug: "in-loving-memory-dr-alexander-aslani",
-    title: "In Loving Memory of Dr Alexander Aslani: Honouring a Legacy of Medical Excellence, Humanitarian Service and Compassion",
+    title: "In Loving Memory of Dr Alexander Aslani",
     date: "October 16, 2026",
     excerpt:
-      "Rehvamp Foundation pays tribute to an internationally respected plastic surgeon whose remarkable career, humanitarian contributions and dedication to improving lives leave an enduring legacy.",
+      "Honouring a legacy of medical excellence, humanitarian service and compassion.",
     tags: ["InMemoriam", "Tribute", "HumanitarianMedicine"],
     image: IMG.blog.aslani,
     imagePortrait: IMG.blog.aslaniPortrait,
     body: [
+      { type: "p", text: "Rehvamp Foundation pays tribute to an internationally respected plastic surgeon whose remarkable career, humanitarian contributions and dedication to improving lives leave an enduring legacy." },
       { type: "p", text: "The Rehvamp Foundation expresses its profound sorrow at the tragic and untimely passing of Dr Alexander Aslani, a distinguished plastic surgeon, humanitarian and highly respected member of the international aesthetic surgery community." },
       { type: "p", text: "Dr Aslani's sudden death in Marbella, Spain, on 7 October 2026 represents a profound loss to his family, loved ones, colleagues, patients and the wider international medical community." },
       { type: "p", text: "An internationally recognised specialist in aesthetic and reconstructive plastic surgery, Dr Aslani dedicated more than three decades to advancing surgical techniques, promoting patient safety and improving the lives of those entrusted to his care." },
