@@ -40,6 +40,7 @@ export const IMG = {
   blog: {
     featured: "/images/blog/featured.webp",
     event: "/images/blog/event.jpg",
+    aslani: "/images/blog/dr-alexander-aslani.webp",
   },
   gaza: {
     heroBg: "/images/gaza/hero-bg-eagle.webp", // brand eagle backdrop for the hero
